@@ -1,6 +1,6 @@
 # Contributing
 
-The SWHID specification is maintained by the SWHID [core][swhid-core-team] team.
+The SWHID specification is maintained by the [SWHID core team][swhid-core-team].
 Design and planning is primarily done via the team [mailinglist][swhid-list] (see [how to join][howto-join]) and meetings.
 
 ## Submitting changes
@@ -23,7 +23,7 @@ Git itself uses this approach. When you merge something it will generate a commi
 Minor changes such as markup and typo fixes may be submitted directly to this repository (either as [issues][issues] or [pull requests][pull-requests]) without previous discussion.
 
 ### Major Changes
-Any change that break backwards compatibility or requires significant tooling changes is considered a major change.
+Any change that breaks backwards compatibility or requires significant tooling changes is considered a major change.
 You may want to discuss major changes on the mailing list first to get design feedback before investing time in a pull request.
 
 [issues]: https://github.com/swhid/specification/issues/
