@@ -28,7 +28,7 @@ You may want to discuss major changes on the mailing list first to get design fe
 
 ## Contribution License
 
-All contributions to the SWHID standard documents are submitted under the [Community Specification License 1.0](https://github.com/swhid/governance/1._Community_Specification_License_1.0.md). Contributions to companion software tools and libraries are submitted under the open source license indicated in the corresponding software projects and files.
+All contributions to the SWHID standard documents are submitted under the [Community Specification License 1.0](https://github.com/swhid/governance/blob/main/1._Community_Specification_License_1.0.md). Contributions to companion software tools and libraries are submitted under the open source license indicated in the corresponding software projects and files.
 
 By making a contribution to this project, you certify that the contribution was
 created in whole or in part by you and you have the right to submit it under the
