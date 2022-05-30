@@ -46,6 +46,9 @@ with your own identity)
 	
 in every commit message. You can also do this automatically by using the -s flag (i.e., git commit -s).
 
+More information on the decision making process can be found in
+the [SWHID governance documents](https://github.com/swhid/governance/).
+
 [issues]: https://github.com/swhid/specification/issues/
 [pull-requests]: https://github.com/swhid/specification/pulls/
 [swhid-list]: https://groups.google.com/g/swhid-discuss
