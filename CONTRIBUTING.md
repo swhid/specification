@@ -34,7 +34,7 @@ By making a contribution to this project, you certify that the contribution was
 created in whole or in part by you and you have the right to submit it under the
 corresponding license. You understand and agree that this project and the
 contribution are public and that a record of the contribution (including all
-personal information you submit with it, including you sign-off) is maintained
+personal information you submit with it, including your sign-off) is maintained
 indefinitely and may be redistributed consistent with this project or the
 license(s) involved.
 
