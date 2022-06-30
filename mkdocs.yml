@@ -6,6 +6,7 @@ extra_css:
 use_directory_urls: true
 nav:
 
+- 'Copyright': index.md
 - 'Foreword': 0.Foreword.md
 - 'Introduction': 0.Introduction.md
 - 'Clause 1: Scope': 1.Scope.md
@@ -16,6 +17,7 @@ nav:
 - 'Clause 6: Qualified Identifiers': 6_Qualified_identifiers.md
 - 'Annex A: Conformance': A.Conformance.md
 - 'Annex B: Bibliography': B.Bibliography.md
+- 'Annex C: License': creative-commons-attribution-license-4.0-unported.md
 copyright: Copyright &copy; 2022 - SWHID Contributors.
 
 markdown_extensions:
