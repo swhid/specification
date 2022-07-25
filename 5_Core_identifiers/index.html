@@ -76,9 +76,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#52-directories">5.2 Directories</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#53-releases">5.3 Releases</a>
+    <li class="toctree-l2"><a class="reference internal" href="#53-revisions">5.3 Revisions</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#54-revisions">5.4 Revisions</a>
+    <li class="toctree-l2"><a class="reference internal" href="#54-releases">5.4 Releases</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#55-snapshots">5.5 Snapshots</a>
     </li>
@@ -125,12 +125,95 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="5-core-identifiers">5 Core identifiers</h1>
+<p>A core SWHID identifier is composed of four fields, separated by a colon
+<code>:</code>.  The <code>swh</code> prefix makes it explicit that this is a SWHID identifier.  <code>1</code>
+(<code>&lt;scheme_version&gt;</code>) is the current version of this identifier <em>scheme</em>. Future
+editions will use higher version numbers, possibly breaking backward
+compatibility. The third field is a tag that correspond to the type of object
+identified:</p>
+<ul>
+<li><code>cnt</code> for <strong>contents</strong>.</li>
+<li><code>dir</code> for <strong>directories</strong>,</li>
+<li><code>rev</code> for <strong>revisions</strong>,</li>
+<li><code>rel</code> for <strong>releases</strong>,</li>
+<li><code>snp</code> for <strong>snapshots</strong>,</li>
+</ul>
+<p>The fourth and last field is the <em>intrinsic identifier</em> of the object.  In this
+version of the specification, this is a hex-encoded (using lowercase ASCII
+characters) SHA1 computed on the content and relevant metadata of the object
+itself, as follows.</p>
 <p><em>TODO</em> For each one: Description, Metadata, Intent, Examples</p>
 <h2 id="51-contents">5.1 Contents</h2>
+<p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
+For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
+i.e. the SHA1 of the byte sequence obtained by juxtaposing
+ - the ASCII string <code>"blob"</code> (without quotes),
+ - a space,
+ - the length of the content as decimal digits,
+ - a NULL byte,
+ - and the actual content of the file.</p>
+<p>No metadata is used for this type of object (in particular, notice that there
+is no file <em>name</em> mentioned here).</p>
+<p>As an example, <code>swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2</code> is the SWHID computed from <a href="https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2">the full text of the GPL3 license</a></p>
 <h2 id="52-directories">5.2 Directories</h2>
-<h2 id="53-releases">5.3 Releases</h2>
-<h2 id="54-revisions">5.4 Revisions</h2>
+<p>Directories are data structures commonly used in hierarchical file systems to group together files and other directories, and to hold relevant metadata about them, in the form of directory entries.</p>
+<p>This version of the SWHID standard adopts the same convention as the popular <em>git</em> version control system, and only takes into account as metadata the name of the directory entries and a simplified representation of the access rights.</p>
+<p>In order to compute the intrinsic identifier of a directory, it is necessary to compute first the SWHID of each object listed in the directory.</p>
+<p><em>TODO</em>: make the following more formal</p>
+<p>Then one proceeds to create a textual representation of the directory as follows:</p>
+<ol>
+<li>
+<p>for each <em>content</em> entry, with a given <em>name</em>, add a single line composed of</p>
+<ul>
+<li>the access rights, encoded as a sequence of six decimal digits,</li>
+<li>a space,</li>
+<li>the ASCII string <code>"blob"</code> (without quotes),</li>
+<li>a space,</li>
+<li>the <em>intrinsic identifier</em> of the <em>content</em></li>
+<li>a space,</li>
+<li>the <em>name</em> (encoded, how?) as a string (<em>TODO</em>: clarify)</li>
+<li>a line terminator</li>
+</ul>
+</li>
+<li>
+<p>for each <em>directory</em> entry, with a given <em>name</em>, add a single line composed of</p>
+<ul>
+<li>the access rights, encoded as a sequence of six decimal digits,</li>
+<li>a space,</li>
+<li>the ASCII string <code>"tree"</code> (without quotes),</li>
+<li>a space,</li>
+<li>the <em>intrinsic identifier</em> of the <em>directory</em></li>
+<li>a space,</li>
+<li>the <em>name</em> (encoded, how?) as a string (<em>TODO</em>: clarify)</li>
+<li>a line terminator</li>
+</ul>
+</li>
+<li>
+<p>sort the lines using the following algorithm</p>
+<ul>
+<li><em>TODO</em> describe the sorting algorithm with all its quirks</li>
+</ul>
+</li>
+</ol>
+<p>The intrinsic identifier of the directory is the <code>sha1_git</code> of the
+resulting textual representation.</p>
+<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> is the
+identifier
+of
+<a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> as
+a given point in time of its development on May 4th 2017.</p>
+<h2 id="53-revisions">5.3 Revisions</h2>
+<p><em>TODO</em></p>
+<p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> points to 
+<a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
+<h2 id="54-releases">5.4 Releases</h2>
+<p><em>TODO</em></p>
+<p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> points to
+the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
 <h2 id="55-snapshots">5.5 Snapshots</h2>
+<p><em>TODO</em></p>
+<p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> points to a
+<a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
               
             </div>
           </div><footer>
