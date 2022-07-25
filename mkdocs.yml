@@ -12,7 +12,7 @@ nav:
 - 'Clause 1: Scope': 1.Scope.md
 - 'Clause 2: Normative references': 2.Normative_references.md
 - 'Clause 3: Terms and definitions': 3.Terms_and_definitions.md
-- 'Clause 4: Conformance': 4.Syntax.md
+- 'Clause 4: Syntax': 4.Syntax.md
 - 'Clause 5: Core Identifiers': 5_Core_identifiers.md
 - 'Clause 6: Qualified Identifiers': 6_Qualified_identifiers.md
 - 'Annex A: Conformance': A.Conformance.md
