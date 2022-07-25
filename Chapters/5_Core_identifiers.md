@@ -103,3 +103,18 @@ the [Darktable release 2.3.0](https://archive.softwareheritage.org/swh:1:rel:22e
 As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` points to a
 [snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
 
+## Note on compatibility with Git
+
+SWHIDs for contents, directories, revisions, and releases are, at present,
+compatible with the way the current version of [Git](https://git-scm.com/) 
+proceeds for 
+[computing identifiers](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects) for
+its objects. The `<object_id>` part of a SWHID for a content object is the Git
+blob identifier of any file with the same content; for a revision it is the Git
+commit identifier for the same revision, etc.  This is not the case for snapshot
+identifiers, as Git does not have a corresponding object type.
+
+Git compatibility is practical, but incidental and is not guaranteed to be
+maintained in future versions of this standard, nor for different versions of
+Git.
+
