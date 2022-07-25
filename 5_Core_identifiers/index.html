@@ -82,6 +82,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#55-snapshots">5.5 Snapshots</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note-on-compatibility-with-git">Note on compatibility with Git</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -214,6 +216,18 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 <p><em>TODO</em></p>
 <p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> points to a
 <a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
+<h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
+<p>SWHIDs for contents, directories, revisions, and releases are, at present,
+compatible with the way the current version of <a href="https://git-scm.com/">Git</a> 
+proceeds for 
+<a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">computing identifiers</a> for
+its objects. The <code>&lt;object_id&gt;</code> part of a SWHID for a content object is the Git
+blob identifier of any file with the same content; for a revision it is the Git
+commit identifier for the same revision, etc.  This is not the case for snapshot
+identifiers, as Git does not have a corresponding object type.</p>
+<p>Git compatibility is practical, but incidental and is not guaranteed to be
+maintained in future versions of this standard, nor for different versions of
+Git.</p>
               
             </div>
           </div><footer>
