@@ -30,6 +30,18 @@ character(s).
 
 *TODO*: decide whether we prescribe to use only the Unix line terminator (this will add extra ^M to DOS/Windows lines)
 
+### 6.1.2 Offset qualifier
+
+To overcome the limitations of the lines qualifier, the offset qualifier allows
+to designate a byte range inside a content.  The range can be a single integer, or a pair of integers separated by `-`.
+
+For example, `swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bofs=154-315`
+designates the same function `generate_intput_stream` as in the example above, but
+does not rely on any convention about line numbers.
+
+*TODO*: implement support for this qualifier in the Software Heritage WebApp.
+
+In case both a `lines` qualifier and a `bofs` qualifier are present, only the `bofs` qualifier must be considered present.
 
 ## 6.2 Context qualifiers
 
@@ -85,7 +97,7 @@ its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c478
 We recommend to equip identifiers meant to be shared with as many
 qualifiers as possible. While qualifiers may be listed in any order, it
 is good practice to present them in the following order:
-`origin`, `visit`, `anchor`, `path` or `lines`. Redundant information
+`origin`, `visit`, `anchor`, `path`, `lines` or `bofs`. Redundant information
 should be omitted: for example, if the *visit* is present, and the
 *path* is relative to the snapshot indicated there, then the *anchor*
 qualifier is superfluous; similarly, if the *path* is empty, it may be
