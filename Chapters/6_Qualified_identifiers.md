@@ -80,4 +80,17 @@ been seen in the Git repository at `https://gitorious.org/ocamlp3l/ocamlp3l_cvs.
 its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9`, and that it is named `simplefarm.ml` in the directory `Simplefarm` contained in the directory `Examples` contained in the root directory associated to the revision with core SWHID `swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0`.
 
 
+### 6.3 Recommendations
+
+We recommend to equip identifiers meant to be shared with as many
+qualifiers as possible. While qualifiers may be listed in any order, it
+is good practice to present them in the following order:
+`origin`, `visit`, `anchor`, `path` or `lines`. Redundant information
+should be omitted: for example, if the *visit* is present, and the
+*path* is relative to the snapshot indicated there, then the *anchor*
+qualifier is superfluous; similarly, if the *path* is empty, it may be
+omitted.
+
+Here is an example: [`swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15`](https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15)
+
 
