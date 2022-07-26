@@ -82,8 +82,6 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#611-lines-qualifier">6.1.1 Lines qualifier</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#612-offset-qualifier">6.1.2 Offset qualifier</a>
-    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#62-context-qualifiers">6.2 Context qualifiers</a>
@@ -159,14 +157,6 @@ designates the function <code>generate_intput_stream</code> that is found at lin
 may be a binary file, or a file that uses non standard line termination
 character(s).</p>
 <p><em>TODO</em>: decide whether we prescribe to use only the Unix line terminator (this will add extra ^M to DOS/Windows lines)</p>
-<h3 id="612-offset-qualifier">6.1.2 Offset qualifier</h3>
-<p>To overcome the limitations of the lines qualifier, the offset qualifier allows
-to designate a byte range inside a content.  The range can be a single integer, or a pair of integers separated by <code>-</code>.</p>
-<p>For example, <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bofs=154-315</code>
-designates the same function <code>generate_intput_stream</code> as in the example above, but
-does not rely on any convention about line numbers.</p>
-<p><em>TODO</em>: implement support for this qualifier in the Software Heritage WebApp.</p>
-<p>In case both a <code>lines</code> qualifier and a <code>bofs</code> qualifier are present, only the <code>bofs</code> qualifier must be considered present.</p>
 <h2 id="62-context-qualifiers">6.2 Context qualifiers</h2>
 <h3 id="621-origin-qualifier">6.2.1 Origin qualifier</h3>
 <p>This qualifier allows to declare the <em>software origin</em> where the
@@ -208,7 +198,7 @@ its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c262
 <p>We recommend to equip identifiers meant to be shared with as many
 qualifiers as possible. While qualifiers may be listed in any order, it
 is good practice to present them in the following order:
-<code>origin</code>, <code>visit</code>, <code>anchor</code>, <code>path</code>, <code>lines</code> or <code>bofs</code>. Redundant information
+<code>origin</code>, <code>visit</code>, <code>anchor</code>, <code>path</code> or <code>lines</code>. Redundant information
 should be omitted: for example, if the <em>visit</em> is present, and the
 <em>path</em> is relative to the snapshot indicated there, then the <em>anchor</em>
 qualifier is superfluous; similarly, if the <em>path</em> is empty, it may be
