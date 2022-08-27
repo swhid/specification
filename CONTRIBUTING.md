@@ -40,12 +40,12 @@ Contributions to companion software tools and libraries are submitted under the 
 By making a contribution to this project, you certify that the contribution was created in whole or in part by you and you have the right to submit it under the corresponding license.
 You understand and agree that this project and the contribution are public and that a record of the contribution (including all personal information you submit with it, including your sign-off) is maintained indefinitely and may be redistributed consistent with this project or the license(s) involved.
 
-To certify that your contribution complies with the above contribution conditions, always include a `Signed-off-by` line like the following (replace with your own identity):
+To certify that your contribution complies with the above contribution conditions, a `Signed-off-by` line like the following (replace with your own identity):
 
     Signed-off-by: Author Name authoremail@example.com
 	
-in every commit message.
-You can also do this automatically by passing the `-s` flag to `git commit`.
+must be included in every commit message.
+Changes made through the web interface include this line. If you use the command line, you can do this by passing the `-s` flag to `git commit`.
 
 More information on the decision making process can be found in the [SWHID governance documents](https://github.com/swhid/governance/).
 
