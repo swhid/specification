@@ -40,39 +40,31 @@ As an example, `swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2` is the SWHID
 
 Directories are data structures commonly used in hierarchical file systems to group together files and other directories, and to hold relevant metadata about them, in the form of directory entries.
 
-This version of the SWHID standard adopts the same convention as the popular *git* version control system, and only takes into account as metadata the name of the directory entries and a simplified representation of the access rights.
+This version of the SWHID standard adopts the same convention as the popular *git* version control system, and only takes into account as metadata the name of the directory entries (as a sequence of arbitrary bytes, excluding ASCII '/' and the NULL byte) and a simplified representation of the access rights.
+
+The names of entries in a directory must be distinct from one another.
 
 In order to compute the intrinsic identifier of a directory, it is necessary to compute first the SWHID of each object listed in the directory.
 
-*TODO*: make the following more formal
+Then one proceeds to create a serialization of the directory as follows:
 
-Then one proceeds to create a textual representation of the directory as follows:
+ 1. sort the directory entries using the following algorithm
+     1. for each entry pointing to a *directory*, append an ASCII '/' to its name
+     2. sort all entries using the natural byte order of their (modified) name
 
- 1. for each *content* entry, with a given *name*, add a single line composed of
-     + the access rights, encoded as a sequence of six decimal digits,
-   	 + a space,
-   	 + the ASCII string `"blob"` (without quotes),
-   	 + a space,
-   	 + the *intrinsic identifier* of the *content*
-   	 + a space,
-   	 + the *name* (encoded, how?) as a string (*TODO*: clarify)
-   	 + a line terminator
+ 2. for each entry, with a given *name* (unmodified), add a sequence of bytes composed of
+     1. the normalized access rights, encoded as a sequence of ASCII-encoded octal digits ('100644' for regular files, '100755' for executable files, '120000' for symbolic links, '40000' for directories),
+     2. an ASCII space,
+     3. the *name* as a raw string of bytes
+     4. a NULL byte
+     5. the *intrinsic identifier* of the *content* or *directory*, encoded as a sequence of 20 bytes
 
- 2. for each *directory* entry, with a given *name*, add a single line composed of
-   	 + the access rights, encoded as a sequence of six decimal digits,
-   	 + a space,
-   	 + the ASCII string `"tree"` (without quotes),
-   	 + a space,
-   	 + the *intrinsic identifier* of the *directory*
-   	 + a space,
-   	 + the *name* (encoded, how?) as a string (*TODO*: clarify)
-   	 + a line terminator
-
- 3. sort the lines using the following algorithm
-     + *TODO* describe the sorting algorithm with all its quirks
-
-The intrinsic identifier of the directory is the `sha1_git` of the
-resulting textual representation.
+The intrinsic identifier of the directory is the SHA1 of the of the byte sequence obtained by juxtaposing
+ - the ASCII string `"tree"` (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.
 
 As an example, `swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505` is the
 identifier
