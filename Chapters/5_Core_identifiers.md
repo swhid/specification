@@ -26,8 +26,8 @@ A *content* is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the `sha1_git` hash of it,
 i.e. the SHA1 of the byte sequence obtained by juxtaposing
  - the ASCII string `"blob"` (without quotes),
- - a space,
- - the length of the content as decimal digits,
+ - an ASCII space,
+ - the length of the content as ASCII-encoded decimal digits,
  - a NULL byte,
  - and the actual content of the file.
 
