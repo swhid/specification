@@ -82,7 +82,72 @@ a given point in time of its development on May 4th 2017.
 
 ## 5.3 Revisions
 
-*TODO*
+Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and record their changes.
+
+Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).
+
+The supported metadata is as follows:
+ - author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.
+ - author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.
+ - author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.
+ - committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.
+ - committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.
+ - committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.
+ - directory (mandatory): the root directory recorded by the revision (FIXME: is this really *meta*data?)
+ - parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.
+ - extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)
+ - message: the message describing the revision
+
+In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).
+
+The serialization of the revision is a sequence of lines in the following order:
+
+ - the reference to the root directory:
+   - the ASCII string `"tree"` (4 bytes)
+   - an ASCII space
+   - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
+   - a LF
+ - for each parent revision, in the order they've been provided, a reference to that revision:
+   - the ASCII string `"parent"` (6 bytes)
+   - an ASCII space
+   - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
+   - a LF
+ - the author line:
+   - the ASCII string `"author"` (6 bytes)
+   - an ASCII space
+   - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+   - an ASCII space
+   - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+   - an ASCII space
+   - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+   - a LF
+ - the committer line:
+   - the ASCII string `"committer"` (9 bytes)
+   - an ASCII space
+   - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
+   - an ASCII space
+   - the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)
+   - an ASCII space
+   - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
+   - a LF
+ - the extra header lines; for each provided key/value pair, in the order they have been provided:
+   - the key
+   - an ASCII space
+   - the value, with each LF replaced by LF followed by an ASCII space
+   - a LF
+ - if the message is defined:
+   - an extra LF (the message is separated from the header with two LFs)
+   - the commit message as a raw string of bytes
+
+The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing
+ - the ASCII string `"commit"` (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.
+
+TODO: add example serializations
+
 
 As an example, `swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d` points to 
 [a commit in the development history of Darktable](https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d), dated 16 January 2017, that added undo/redo supports for masks.
