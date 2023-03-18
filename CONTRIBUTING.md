@@ -1,16 +1,22 @@
 # Contributing
 
 The SWHID specification is maintained by the [SWHID core team][swhid-core-team].
-Design and planning is primarily done via the team [mailing list][swhid-list] (see [how to join][howto-join]) and meetings.
+Coordination is primarily done via the team [mailing list][swhid-list] (see [how to join][howto-join]) and meetings.
+
+### Workflow
+Contributors open [issues][issues] on the specification repository, and when reasonable consensus emerge on how to address the issue, they create a [pull request][pull-requests] that implements it. Contributors may also open a pull request directly if they feel that it's more appropriate.
+
+Discussion and collaboration on an issue or a pull request take place directly under the issue or pull request itself.
+
+When the Editors determine that there is a consensus, the pull request is merged.
 
 ### Major Changes
 
-Any change that breaks backwards compatibility or requires significant tooling changes is considered a major change.
-You may want to discuss major changes on [the mailing list][swhid-list] first to get design feedback before investing time in a pull request.
+Any change that breaks backwards compatibility or requires significant tooling changes is considered a major change. After you create the issue, you may want to call attention to it on [the mailing list][swhid-list] to get maximum feedback before investing time in a pull request.
 
 ### Minor Changes
 
-Minor changes such as markup and typo fixes may be submitted directly to this repository (either as [issues][issues] or [pull requests][pull-requests]) without previous discussion.
+Minor changes such as markup and typo fixes may be submitted directly to this repository as [pull requests][pull-requests] without previous discussion.
 
 ## Submitting changes
 
@@ -51,4 +57,4 @@ More information on the decision making process can be found in the [SWHID gover
 [pull-requests]: https://github.com/swhid/specification/pulls/
 [swhid-list]: https://groups.google.com/g/swhid-discuss
 [howto-join]: https://support.google.com/a/users/answer/9304806
-[swhid-core-team]: https://swhid.github.io/#coreteam
+[swhid-core-team]: https://swhid.github.io/coreteam
