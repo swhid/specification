@@ -8,7 +8,7 @@ Contributors open [issues][issues] on the specification repository, and when rea
 
 Discussion and collaboration on an issue or a pull request take place directly under the issue or pull request itself.
 
-When the Editors determine that there is a consensus, the pull request is merged.
+When the Maintainers determine that there is a consensus, the pull request is merged.
 
 ### Major Changes
 
