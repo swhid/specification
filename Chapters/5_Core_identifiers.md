@@ -25,6 +25,7 @@ itself, as follows.
 A *content* is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the `sha1_git` hash of it,
 i.e. the SHA1 of the byte sequence obtained by juxtaposing
+
  - the ASCII string `"blob"` (without quotes),
  - an ASCII space,
  - the length of the content as ASCII-encoded decimal digits,
@@ -242,6 +243,7 @@ Then one proceeds to create a serialization of the snapshot as follows:
    length and are length-encoded to avoid ambiguity.
 
 The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing
+
  - the ASCII string `"snapshot"` (without quotes),
  - an ASCII space,
  - the length of the previously obtained serialization as ASCII-encoded decimal digits,
