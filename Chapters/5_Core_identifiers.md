@@ -135,6 +135,7 @@ The serialization of the revision is a sequence of lines in the following order:
    - the commit message as a raw string of bytes
 
 The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing
+
  - the ASCII string `"commit"` (without quotes),
  - an ASCII space,
  - the length of the previously obtained serialization as ASCII-encoded decimal digits,
@@ -192,6 +193,7 @@ The serialization of the release is a sequence of lines in the following order:
    - the commit message as a raw string of bytes
 
 The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
+
  - the ASCII string `"tag"` (without quotes),
  - an ASCII space,
  - the length of the previously obtained serialization as ASCII-encoded decimal digits,
