@@ -216,76 +216,54 @@ a given point in time of its development on May 4th 2017.</p>
 <p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
 <p>The serialization of the revision is a sequence of lines in the following order:</p>
 <ul>
-<li>
-<p>the reference to the root directory:</p>
-</li>
-<li>
-<p>the ASCII string <code>"tree"</code> (4 bytes)</p>
-</li>
+<li>the reference to the root directory:<ul>
+<li>the ASCII string <code>"tree"</code> (4 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)</li>
-<li>
-<p>a LF</p>
+<li>a LF</li>
+</ul>
 </li>
-<li>
-<p>for each parent revision, in the order they've been provided, a reference to that revision:</p>
-</li>
-<li>
-<p>the ASCII string <code>"parent"</code> (6 bytes)</p>
-</li>
+<li>for each parent revision, in the order they've been provided, a reference to that revision:<ul>
+<li>the ASCII string <code>"parent"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)</li>
-<li>
-<p>a LF</p>
+<li>a LF</li>
+</ul>
 </li>
-<li>
-<p>the author line:</p>
-</li>
-<li>
-<p>the ASCII string <code>"author"</code> (6 bytes)</p>
-</li>
+<li>the author line:<ul>
+<li>the ASCII string <code>"author"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
-<li>
-<p>a LF</p>
+<li>a LF</li>
+</ul>
 </li>
-<li>
-<p>the committer line:</p>
-</li>
-<li>
-<p>the ASCII string <code>"committer"</code> (9 bytes)</p>
-</li>
+<li>the committer line:<ul>
+<li>the ASCII string <code>"committer"</code> (9 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space</li>
-<li>
-<p>a LF</p>
+<li>a LF</li>
+</ul>
 </li>
-<li>
-<p>the extra header lines; for each provided key/value pair, in the order they have been provided:</p>
-</li>
-<li>
-<p>the key</p>
-</li>
+<li>the extra header lines; for each provided key/value pair, in the order they have been provided:<ul>
+<li>the key</li>
 <li>an ASCII space</li>
 <li>the value, with each LF replaced by LF followed by an ASCII space</li>
-<li>
-<p>a LF</p>
+<li>a LF</li>
+</ul>
 </li>
-<li>
-<p>if the message is defined:</p>
-</li>
-<li>
-<p>an extra LF (the message is separated from the header with two LFs)</p>
-</li>
+<li>if the message is defined:<ul>
+<li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
 </ul>
 <p>The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing</p>
 <ul>
@@ -310,7 +288,7 @@ a given point in time of its development on May 4th 2017.</p>
 <p>In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.</p>
 <p>The serialization of the release is a sequence of lines in the following order:</p>
 <ul>
-<li>the reference to the target object:</li>
+<li>the reference to the target object:<ul>
 <li>the ASCII string <code>"object"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)</li>
@@ -319,12 +297,16 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>an ASCII string referencing the type of the target object (<code>"commit"</code> for a revision, <code>"tree"</code> for a directory, <code>"tag"</code> for another release, <code>"blob"</code> for a content object)</li>
 <li>a LF</li>
-<li>the name of the release:</li>
+</ul>
+</li>
+<li>the name of the release:<ul>
 <li>the ASCII string <code>"tag"</code> (3 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>if there is an author, the author line:</li>
+</ul>
+</li>
+<li>if there is an author, the author line:<ul>
 <li>the ASCII string <code>"tagger"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
@@ -333,9 +315,13 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>if the message is defined:</li>
+</ul>
+</li>
+<li>if the message is defined:<ul>
 <li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
 </ul>
 <p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing</p>
 <ul>
@@ -360,29 +346,27 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 </li>
 <li>
 <p>for each branch, with a given <em>name</em>, add a sequence of bytes composed of</p>
-</li>
-<li>
-<p>the type of the branch target:</p>
 <ul>
+<li>the type of the branch target:<ul>
 <li><code>"content"</code>, <code>"directory"</code>, <code>"revision"</code>, <code>"release"</code> or <code>"snapshot"</code> for each corresponding object type</li>
 <li><code>"alias"</code> for branches referencing another branch;</li>
 <li><code>"dangling"</code> for dangling branches (TODO: is this needed for this spec?)</li>
 </ul>
 </li>
-<li>
-<p>an ASCII space</p>
-</li>
+<li>an ASCII space</li>
 <li>the branch name (as raw bytes)</li>
 <li>a NULL byte</li>
 <li>the length of the target identifier, as an ascii-encoded decimal number
-     (<code>"20"</code> for intrinsic identifiers, <code>"0"</code> for dangling
-     branches, the length of the name of the target branch for branch aliases)</li>
+  (<code>"20"</code> for intrinsic identifiers, <code>"0"</code> for dangling
+  branches, the length of the name of the target branch for branch aliases)</li>
 <li>an ASCII colon (<code>":"</code>)</li>
 <li>the identifier of the target object pointed at by the branch:<ul>
 <li>for contents, directories, revisions, releases or snapshots: their intrinsic
-   identifier as a string of 20 bytes</li>
+  identifier as a string of 20 bytes</li>
 <li>for branch aliases, the name of the target branch (as a string of bytes)</li>
 <li>for dangling branches, the empty string</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
