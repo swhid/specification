@@ -18,8 +18,6 @@ version of the specification, this is a hex-encoded (using lowercase ASCII
 characters) SHA1 computed on the content and relevant metadata of the object
 itself, as follows.
 
-*TODO* For each one: Description, Metadata, Intent, Examples
-
 ## 5.1 Contents
 
 A *content* is an uninterpreted byte sequence, typically, the content of a file.
@@ -69,8 +67,7 @@ The intrinsic identifier of the directory is the SHA1 of the byte sequence obtai
  - and the previously obtained serialization.
 
 As an example, `swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505` is the
-identifier
-of
+is the SWHID computed from
 [a directory containing the source code of the darktable photography application](https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505) as
 a given point in time of its development on May 4th 2017.
 
@@ -88,7 +85,7 @@ The supported metadata is as follows:
  - committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.
  - committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.
  - committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.
- - directory (mandatory): the root directory recorded by the revision (FIXME: is this really *meta*data?)
+ - directory (mandatory): the root directory recorded by the revision
  - parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.
  - extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)
  - message: the message describing the revision
@@ -112,7 +109,7 @@ The serialization of the revision is a sequence of lines in the following order:
     - an ASCII space
     - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
     - an ASCII space
-    - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+    - the ASCII-encoded decimal representation of the author timestamp
     - an ASCII space
     - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
     - a LF
@@ -121,7 +118,7 @@ The serialization of the revision is a sequence of lines in the following order:
     - an ASCII space
     - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
     - an ASCII space
-    - the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)
+    - the ASCII-encoded decimal representation of the committer timestamp
     - an ASCII space
     - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
     - a LF
@@ -142,10 +139,7 @@ The intrinsic identifier of the revision is the SHA1 of the byte sequence obtain
  - a NULL byte,
  - and the previously obtained serialization.
 
-TODO: add example serializations
-
-
-As an example, `swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d` points to 
+As an example, `swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d` is the SWHID computed from
 [a commit in the development history of Darktable](https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d), dated 16 January 2017, that added undo/redo supports for masks.
 
 
@@ -184,7 +178,7 @@ The serialization of the release is a sequence of lines in the following order:
     - an ASCII space
     - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
     - an ASCII space
-    - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+    - the ASCII-encoded decimal representation of the author timestamp
     - an ASCII space
     - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
     - a LF
@@ -200,9 +194,7 @@ The intrinsic identifier of the release is the SHA1 of the byte sequence obtaine
  - a NULL byte,
  - and the previously obtained serialization.
 
-TODO: add example serializations
-
-As an example, `swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f` points to
+As an example, `swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f` is the SWHID computed from
 the [Darktable release 2.3.0](https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f), dated 24 December 2016.
 
 
@@ -212,7 +204,7 @@ Any kind of software origin offers multiple pointers to the “current” state 
 
 A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.
 
-Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, (FIXME?) for instance the default `"HEAD"` branch can point at another, more specific, `"refs/heads/main"` branch.
+Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, for instance the default `"HEAD"` branch can point at another, more specific, `"refs/heads/main"` branch.
 
 To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.
 
@@ -252,8 +244,8 @@ The intrinsic identifier of the snapshot is the SHA1 of the byte sequence obtain
 
 
 
-As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` points to a
-[snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
+As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` is the SWHID computed from
+[a snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
 
 ## Note on compatibility with Git
 
