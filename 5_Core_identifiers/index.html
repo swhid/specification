@@ -216,41 +216,75 @@ a given point in time of its development on May 4th 2017.</p>
 <p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
 <p>The serialization of the revision is a sequence of lines in the following order:</p>
 <ul>
-<li>the reference to the root directory:</li>
-<li>the ASCII string <code>"tree"</code> (4 bytes)</li>
+<li>
+<p>the reference to the root directory:</p>
+</li>
+<li>
+<p>the ASCII string <code>"tree"</code> (4 bytes)</p>
+</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)</li>
-<li>a LF</li>
-<li>for each parent revision, in the order they've been provided, a reference to that revision:</li>
-<li>the ASCII string <code>"parent"</code> (6 bytes)</li>
+<li>
+<p>a LF</p>
+</li>
+<li>
+<p>for each parent revision, in the order they've been provided, a reference to that revision:</p>
+</li>
+<li>
+<p>the ASCII string <code>"parent"</code> (6 bytes)</p>
+</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)</li>
-<li>a LF</li>
-<li>the author line:</li>
-<li>the ASCII string <code>"author"</code> (6 bytes)</li>
+<li>
+<p>a LF</p>
+</li>
+<li>
+<p>the author line:</p>
+</li>
+<li>
+<p>the ASCII string <code>"author"</code> (6 bytes)</p>
+</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
-<li>a LF</li>
-<li>the committer line:</li>
-<li>the ASCII string <code>"committer"</code> (9 bytes)</li>
+<li>
+<p>a LF</p>
+</li>
+<li>
+<p>the committer line:</p>
+</li>
+<li>
+<p>the ASCII string <code>"committer"</code> (9 bytes)</p>
+</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space</li>
-<li>a LF</li>
-<li>the extra header lines; for each provided key/value pair, in the order they have been provided:</li>
-<li>the key</li>
+<li>
+<p>a LF</p>
+</li>
+<li>
+<p>the extra header lines; for each provided key/value pair, in the order they have been provided:</p>
+</li>
+<li>
+<p>the key</p>
+</li>
 <li>an ASCII space</li>
 <li>the value, with each LF replaced by LF followed by an ASCII space</li>
-<li>a LF</li>
-<li>if the message is defined:</li>
-<li>an extra LF (the message is separated from the header with two LFs)</li>
+<li>
+<p>a LF</p>
+</li>
+<li>
+<p>if the message is defined:</p>
+</li>
+<li>
+<p>an extra LF (the message is separated from the header with two LFs)</p>
+</li>
 <li>the commit message as a raw string of bytes</li>
 </ul>
 <p>The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing</p>
