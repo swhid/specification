@@ -209,11 +209,100 @@ a given point in time of its development on May 4th 2017.</p>
 <p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> points to 
 <a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
 <h2 id="54-releases">5.4 Releases</h2>
-<p><em>TODO</em></p>
+<p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.</p>
+<p>The supported metadata is as follows:
+ - name (arbitrary byte sequence, mandatory): a name identifying the release
+ - author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
+ - author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
+ - author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
+ - target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
+ - message: the message describing the release</p>
+<p>In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.</p>
+<p>The serialization of the release is a sequence of lines in the following order:</p>
+<ul>
+<li>the reference to the target object:</li>
+<li>the ASCII string <code>"object"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)</li>
+<li>a LF</li>
+<li>the ASCII string <code>"type"</code> (4 bytes)</li>
+<li>an ASCII space</li>
+<li>an ASCII string referencing the type of the target object (<code>"commit"</code> for a revision, <code>"tree"</code> for a directory, <code>"tag"</code> for another release, <code>"blob"</code> for a content object)</li>
+<li>a LF</li>
+<li>the name of the release:</li>
+<li>the ASCII string <code>"tag"</code> (3 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+<li>if there is an author, the author line:</li>
+<li>the ASCII string <code>"tagger"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+<li>if the message is defined:</li>
+<li>an extra LF (the message is separated from the header with two LFs)</li>
+<li>the commit message as a raw string of bytes</li>
+</ul>
+<p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
+ - the ASCII string <code>"tag"</code> (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.</p>
+<p>TODO: add example serializations</p>
 <p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> points to
 the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
 <h2 id="55-snapshots">5.5 Snapshots</h2>
-<p><em>TODO</em></p>
+<p>Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (e.g., master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (e.g., stable, development, etc.).</p>
+<p>A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.</p>
+<p>Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, (FIXME?) for instance the default <code>"HEAD"</code> branch can point at another, more specific, <code>"refs/heads/main"</code> branch.</p>
+<p>To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.</p>
+<p>Then one proceeds to create a serialization of the snapshot as follows:</p>
+<ol>
+<li>
+<p>sort the snapshot branches using the natural byte order of their name</p>
+</li>
+<li>
+<p>for each branch, with a given <em>name</em>, add a sequence of bytes composed of</p>
+</li>
+<li>
+<p>the type of the branch target:</p>
+<ul>
+<li><code>"content"</code>, <code>"directory"</code>, <code>"revision"</code>, <code>"release"</code> or <code>"snapshot"</code> for each corresponding object type</li>
+<li><code>"alias"</code> for branches referencing another branch;</li>
+<li><code>"dangling"</code> for dangling branches (TODO: is this needed for this spec?)</li>
+</ul>
+</li>
+<li>
+<p>an ASCII space</p>
+</li>
+<li>the branch name (as raw bytes)</li>
+<li>a NULL byte</li>
+<li>the length of the target identifier, as an ascii-encoded decimal number
+     (<code>"20"</code> for intrinsic identifiers, <code>"0"</code> for dangling
+     branches, the length of the name of the target branch for branch aliases)</li>
+<li>an ASCII colon (<code>":"</code>)</li>
+<li>the identifier of the target object pointed at by the branch:<ul>
+<li>for contents, directories, revisions, releases or snapshots: their intrinsic
+   identifier as a string of 20 bytes</li>
+<li>for branch aliases, the name of the target branch (as a string of bytes)</li>
+<li>for dangling branches, the empty string</li>
+</ul>
+</li>
+</ol>
+<p>Note that, akin to the serialization of directories, there is no separator between
+   entries. Because of alias branches, target identifiers are of arbitrary
+   length and are length-encoded to avoid ambiguity.</p>
+<p>The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing
+ - the ASCII string <code>"snapshot"</code> (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.</p>
 <p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> points to a
 <a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
 <h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
