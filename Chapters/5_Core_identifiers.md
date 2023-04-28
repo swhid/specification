@@ -245,7 +245,7 @@ The intrinsic identifier of the snapshot is the SHA1 of the byte sequence obtain
 
 
 As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` is the SWHID computed from
-[a snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
+[a snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
 
 ## Note on compatibility with Git
 
