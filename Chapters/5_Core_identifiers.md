@@ -98,16 +98,21 @@ In order to compute the intrinsic identifier of a revision, it is necessary to f
 The serialization of the revision is a sequence of lines in the following order:
 
  - the reference to the root directory:
+ 
    - the ASCII string `"tree"` (4 bytes)
    - an ASCII space
    - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
    - a LF
- - for each parent revision, in the order they've been provided, a reference to that revision:
+
+- for each parent revision, in the order they've been provided, a reference to that revision:
+
    - the ASCII string `"parent"` (6 bytes)
    - an ASCII space
    - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
    - a LF
+ 
  - the author line:
+ 
    - the ASCII string `"author"` (6 bytes)
    - an ASCII space
    - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
@@ -116,7 +121,9 @@ The serialization of the revision is a sequence of lines in the following order:
    - an ASCII space
    - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
    - a LF
+ 
  - the committer line:
+ 
    - the ASCII string `"committer"` (9 bytes)
    - an ASCII space
    - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
@@ -125,12 +132,16 @@ The serialization of the revision is a sequence of lines in the following order:
    - an ASCII space
    - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
    - a LF
+ 
  - the extra header lines; for each provided key/value pair, in the order they have been provided:
+
    - the key
    - an ASCII space
    - the value, with each LF replaced by LF followed by an ASCII space
    - a LF
- - if the message is defined:
+
+- if the message is defined:
+
    - an extra LF (the message is separated from the header with two LFs)
    - the commit message as a raw string of bytes
 
