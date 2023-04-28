@@ -90,7 +90,55 @@ As an example, `swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d` points to
 
 ## 5.4 Releases
 
-*TODO*
+Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.
+
+The supported metadata is as follows:
+ - name (arbitrary byte sequence, mandatory): a name identifying the release
+ - author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
+ - author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
+ - author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
+ - target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
+ - message: the message describing the release
+
+In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.
+
+The serialization of the release is a sequence of lines in the following order:
+
+ - the reference to the target object:
+   - the ASCII string `"object"` (6 bytes)
+   - an ASCII space
+   - the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)
+   - a LF
+   - the ASCII string `"type"` (4 bytes)
+   - an ASCII space
+   - an ASCII string referencing the type of the target object (`"commit"` for a revision, `"tree"` for a directory, `"tag"` for another release, `"blob"` for a content object)
+   - a LF
+ - the name of the release:
+   - the ASCII string `"tag"` (3 bytes)
+   - an ASCII space
+   - the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space
+   - a LF
+ - if there is an author, the author line:
+   - the ASCII string `"tagger"` (6 bytes)
+   - an ASCII space
+   - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+   - an ASCII space
+   - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+   - an ASCII space
+   - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+   - a LF
+ - if the message is defined:
+   - an extra LF (the message is separated from the header with two LFs)
+   - the commit message as a raw string of bytes
+
+The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
+ - the ASCII string `"tag"` (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.
+
+TODO: add example serializations
 
 As an example, `swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f` points to
 the [Darktable release 2.3.0](https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f), dated 24 December 2016.
