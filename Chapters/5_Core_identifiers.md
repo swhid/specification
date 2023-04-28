@@ -60,6 +60,7 @@ Then one proceeds to create a serialization of the directory as follows:
      5. the *intrinsic identifier* of the *content* or *directory*, encoded as a sequence of 20 bytes
 
 The intrinsic identifier of the directory is the SHA1 of the of the byte sequence obtained by juxtaposing
+
  - the ASCII string `"tree"` (without quotes),
  - an ASCII space,
  - the length of the previously obtained serialization as ASCII-encoded decimal digits,
@@ -79,6 +80,7 @@ Software development within a specific project is essentially a time-indexed ser
 Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).
 
 The supported metadata is as follows:
+
  - author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.
  - author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.
  - author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.
