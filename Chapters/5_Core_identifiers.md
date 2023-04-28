@@ -98,52 +98,41 @@ In order to compute the intrinsic identifier of a revision, it is necessary to f
 The serialization of the revision is a sequence of lines in the following order:
 
  - the reference to the root directory:
- 
-   - the ASCII string `"tree"` (4 bytes)
-   - an ASCII space
-   - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
-   - a LF
-
-- for each parent revision, in the order they've been provided, a reference to that revision:
-
-   - the ASCII string `"parent"` (6 bytes)
-   - an ASCII space
-   - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
-   - a LF
- 
+    - the ASCII string `"tree"` (4 bytes)
+    - an ASCII space
+    - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
+    - a LF
+ - for each parent revision, in the order they've been provided, a reference to that revision:
+    - the ASCII string `"parent"` (6 bytes)
+    - an ASCII space
+    - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
+    - a LF
  - the author line:
- 
-   - the ASCII string `"author"` (6 bytes)
-   - an ASCII space
-   - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
-   - an ASCII space
-   - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
-   - an ASCII space
-   - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
-   - a LF
- 
+    - the ASCII string `"author"` (6 bytes)
+    - an ASCII space
+    - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+    - an ASCII space
+    - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+    - an ASCII space
+    - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+    - a LF
  - the committer line:
- 
-   - the ASCII string `"committer"` (9 bytes)
-   - an ASCII space
-   - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
-   - an ASCII space
-   - the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)
-   - an ASCII space
-   - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
-   - a LF
- 
+    - the ASCII string `"committer"` (9 bytes)
+    - an ASCII space
+    - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
+    - an ASCII space
+    - the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)
+    - an ASCII space
+    - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
+    - a LF
  - the extra header lines; for each provided key/value pair, in the order they have been provided:
-
-   - the key
-   - an ASCII space
-   - the value, with each LF replaced by LF followed by an ASCII space
-   - a LF
-
-- if the message is defined:
-
-   - an extra LF (the message is separated from the header with two LFs)
-   - the commit message as a raw string of bytes
+    - the key
+    - an ASCII space
+    - the value, with each LF replaced by LF followed by an ASCII space
+    - a LF
+ - if the message is defined:
+    - an extra LF (the message is separated from the header with two LFs)
+    - the commit message as a raw string of bytes
 
 The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing
 
@@ -177,31 +166,31 @@ In order to compute the intrinsic identifier of a release, it is necessary to fi
 The serialization of the release is a sequence of lines in the following order:
 
  - the reference to the target object:
-   - the ASCII string `"object"` (6 bytes)
-   - an ASCII space
-   - the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)
-   - a LF
-   - the ASCII string `"type"` (4 bytes)
-   - an ASCII space
-   - an ASCII string referencing the type of the target object (`"commit"` for a revision, `"tree"` for a directory, `"tag"` for another release, `"blob"` for a content object)
-   - a LF
+    - the ASCII string `"object"` (6 bytes)
+    - an ASCII space
+    - the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)
+    - a LF
+    - the ASCII string `"type"` (4 bytes)
+    - an ASCII space
+    - an ASCII string referencing the type of the target object (`"commit"` for a revision, `"tree"` for a directory, `"tag"` for another release, `"blob"` for a content object)
+    - a LF
  - the name of the release:
-   - the ASCII string `"tag"` (3 bytes)
-   - an ASCII space
-   - the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space
-   - a LF
+    - the ASCII string `"tag"` (3 bytes)
+    - an ASCII space
+    - the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space
+    - a LF
  - if there is an author, the author line:
-   - the ASCII string `"tagger"` (6 bytes)
-   - an ASCII space
-   - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
-   - an ASCII space
-   - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
-   - an ASCII space
-   - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
-   - a LF
+    - the ASCII string `"tagger"` (6 bytes)
+    - an ASCII space
+    - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+    - an ASCII space
+    - the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)
+    - an ASCII space
+    - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+    - a LF
  - if the message is defined:
-   - an extra LF (the message is separated from the header with two LFs)
-   - the commit message as a raw string of bytes
+    - an extra LF (the message is separated from the header with two LFs)
+    - the commit message as a raw string of bytes
 
 The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
 
@@ -232,24 +221,22 @@ Then one proceeds to create a serialization of the snapshot as follows:
  1. sort the snapshot branches using the natural byte order of their name
 
  2. for each branch, with a given *name*, add a sequence of bytes composed of
-   - the type of the branch target:
-
-     - `"content"`, `"directory"`, `"revision"`, `"release"` or `"snapshot"` for each corresponding object type
-     - `"alias"` for branches referencing another branch;
-     - `"dangling"` for dangling branches (TODO: is this needed for this spec?)
-
-   - an ASCII space
-   - the branch name (as raw bytes)
-   - a NULL byte
-   - the length of the target identifier, as an ascii-encoded decimal number
-     (`"20"` for intrinsic identifiers, `"0"` for dangling
-     branches, the length of the name of the target branch for branch aliases)
-   - an ASCII colon (`":"`)
-   - the identifier of the target object pointed at by the branch:
-     - for contents, directories, revisions, releases or snapshots: their intrinsic
-       identifier as a string of 20 bytes
-     - for branch aliases, the name of the target branch (as a string of bytes)
-     - for dangling branches, the empty string
+    - the type of the branch target:
+     	 - `"content"`, `"directory"`, `"revision"`, `"release"` or `"snapshot"` for each corresponding object type
+     	 - `"alias"` for branches referencing another branch;
+     	 - `"dangling"` for dangling branches (TODO: is this needed for this spec?)
+    - an ASCII space
+    - the branch name (as raw bytes)
+    - a NULL byte
+    - the length of the target identifier, as an ascii-encoded decimal number
+      (`"20"` for intrinsic identifiers, `"0"` for dangling
+      branches, the length of the name of the target branch for branch aliases)
+    - an ASCII colon (`":"`)
+    - the identifier of the target object pointed at by the branch:
+     	- for contents, directories, revisions, releases or snapshots: their intrinsic
+     	  identifier as a string of 20 bytes
+     	- for branch aliases, the name of the target branch (as a string of bytes)
+     	- for dangling branches, the empty string
 
    Note that, akin to the serialization of directories, there is no separator between
    entries. Because of alias branches, target identifiers are of arbitrary
