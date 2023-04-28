@@ -253,12 +253,14 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
 </ul>
-<p>The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing
- - the ASCII string <code>"commit"</code> (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.</p>
+<p>The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"commit"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
 <p>TODO: add example serializations</p>
 <p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> points to 
 <a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
@@ -301,12 +303,14 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
 </ul>
-<p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
- - the ASCII string <code>"tag"</code> (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.</p>
+<p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"tag"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
 <p>TODO: add example serializations</p>
 <p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> points to
 the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
