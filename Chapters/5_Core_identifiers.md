@@ -60,7 +60,7 @@ Then one proceeds to create a serialization of the directory as follows:
      4. a NULL byte
      5. the *intrinsic identifier* of the *content* or *directory*, encoded as a sequence of 20 bytes
 
-The intrinsic identifier of the directory is the SHA1 of the of the byte sequence obtained by juxtaposing
+The intrinsic identifier of the directory is the SHA1 of the byte sequence obtained by juxtaposing
 
  - the ASCII string `"tree"` (without quotes),
  - an ASCII space,
@@ -134,7 +134,7 @@ The serialization of the revision is a sequence of lines in the following order:
     - an extra LF (the message is separated from the header with two LFs)
     - the commit message as a raw string of bytes
 
-The intrinsic identifier of the revision is the SHA1 of the of the byte sequence obtained by juxtaposing
+The intrinsic identifier of the revision is the SHA1 of the byte sequence obtained by juxtaposing
 
  - the ASCII string `"commit"` (without quotes),
  - an ASCII space,
@@ -242,7 +242,7 @@ Then one proceeds to create a serialization of the snapshot as follows:
    entries. Because of alias branches, target identifiers are of arbitrary
    length and are length-encoded to avoid ambiguity.
 
-The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing
+The intrinsic identifier of the snapshot is the SHA1 of the byte sequence obtained by juxtaposing
 
  - the ASCII string `"snapshot"` (without quotes),
  - an ASCII space,
