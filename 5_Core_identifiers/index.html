@@ -148,12 +148,14 @@ itself, as follows.</p>
 <h2 id="51-contents">5.1 Contents</h2>
 <p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
-i.e. the SHA1 of the byte sequence obtained by juxtaposing
- - the ASCII string <code>"blob"</code> (without quotes),
- - an ASCII space,
- - the length of the content as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the actual content of the file.</p>
+i.e. the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"blob"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the content as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the actual content of the file.</li>
+</ul>
 <p>No metadata is used for this type of object (in particular, notice that there
 is no file <em>name</em> mentioned here).</p>
 <p>As an example, <code>swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2</code> is the SWHID computed from <a href="https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2">the full text of the GPL3 license</a></p>
@@ -349,12 +351,14 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 <p>Note that, akin to the serialization of directories, there is no separator between
    entries. Because of alias branches, target identifiers are of arbitrary
    length and are length-encoded to avoid ambiguity.</p>
-<p>The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing
- - the ASCII string <code>"snapshot"</code> (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.</p>
+<p>The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"snapshot"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
 <p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> points to a
 <a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
 <h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
