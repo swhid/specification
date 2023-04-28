@@ -144,7 +144,6 @@ identified:</p>
 version of the specification, this is a hex-encoded (using lowercase ASCII
 characters) SHA1 computed on the content and relevant metadata of the object
 itself, as follows.</p>
-<p><em>TODO</em> For each one: Description, Metadata, Intent, Examples</p>
 <h2 id="51-contents">5.1 Contents</h2>
 <p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
@@ -193,8 +192,7 @@ is no file <em>name</em> mentioned here).</p>
 <li>and the previously obtained serialization.</li>
 </ul>
 <p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> is the
-identifier
-of
+is the SWHID computed from
 <a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> as
 a given point in time of its development on May 4th 2017.</p>
 <h2 id="53-revisions">5.3 Revisions</h2>
@@ -208,7 +206,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.</li>
 <li>committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.</li>
 <li>committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.</li>
-<li>directory (mandatory): the root directory recorded by the revision (FIXME: is this really <em>meta</em>data?)</li>
+<li>directory (mandatory): the root directory recorded by the revision</li>
 <li>parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.</li>
 <li>extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)</li>
 <li>message: the message describing the revision</li>
@@ -235,7 +233,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
-<li>the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)</li>
+<li>the ASCII-encoded decimal representation of the author timestamp</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
@@ -246,7 +244,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
-<li>the ASCII-encoded decimal representation of the committer timestamp (TODO: expand what that means)</li>
+<li>the ASCII-encoded decimal representation of the committer timestamp</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
@@ -273,8 +271,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>a NULL byte,</li>
 <li>and the previously obtained serialization.</li>
 </ul>
-<p>TODO: add example serializations</p>
-<p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> points to 
+<p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> is the SWHID computed from
 <a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
 <h2 id="54-releases">5.4 Releases</h2>
 <p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.</p>
@@ -311,7 +308,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
 <li>an ASCII space</li>
-<li>the ASCII-encoded decimal representation of the author timestamp (TODO: expand what that means)</li>
+<li>the ASCII-encoded decimal representation of the author timestamp</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
@@ -331,13 +328,12 @@ a given point in time of its development on May 4th 2017.</p>
 <li>a NULL byte,</li>
 <li>and the previously obtained serialization.</li>
 </ul>
-<p>TODO: add example serializations</p>
-<p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> points to
+<p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> is the SWHID computed from
 the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
 <h2 id="55-snapshots">5.5 Snapshots</h2>
 <p>Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (e.g., master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (e.g., stable, development, etc.).</p>
 <p>A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.</p>
-<p>Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, (FIXME?) for instance the default <code>"HEAD"</code> branch can point at another, more specific, <code>"refs/heads/main"</code> branch.</p>
+<p>Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, for instance the default <code>"HEAD"</code> branch can point at another, more specific, <code>"refs/heads/main"</code> branch.</p>
 <p>To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.</p>
 <p>Then one proceeds to create a serialization of the snapshot as follows:</p>
 <ol>
@@ -381,8 +377,8 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 <li>a NULL byte,</li>
 <li>and the previously obtained serialization.</li>
 </ul>
-<p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> points to a
-<a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
+<p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> is the SWHID computed from
+<a href="https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453">a snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
 <h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
 <p>SWHIDs for contents, directories, revisions, and releases are, at present,
 compatible with the way the current version of <a href="https://git-scm.com/">Git</a> 
