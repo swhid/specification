@@ -182,12 +182,14 @@ is no file <em>name</em> mentioned here).</p>
 </ol>
 </li>
 </ol>
-<p>The intrinsic identifier of the directory is the SHA1 of the of the byte sequence obtained by juxtaposing
- - the ASCII string <code>"tree"</code> (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.</p>
+<p>The intrinsic identifier of the directory is the SHA1 of the of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"tree"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
 <p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> is the
 identifier
 of
@@ -196,17 +198,19 @@ a given point in time of its development on May 4th 2017.</p>
 <h2 id="53-revisions">5.3 Revisions</h2>
 <p>Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and record their changes.</p>
 <p>Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).</p>
-<p>The supported metadata is as follows:
- - author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.
- - author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.
- - author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.
- - committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.
- - committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.
- - committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.
- - directory (mandatory): the root directory recorded by the revision (FIXME: is this really <em>meta</em>data?)
- - parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.
- - extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)
- - message: the message describing the revision</p>
+<p>The supported metadata is as follows:</p>
+<ul>
+<li>author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.</li>
+<li>author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.</li>
+<li>author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.</li>
+<li>committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.</li>
+<li>committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.</li>
+<li>committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.</li>
+<li>directory (mandatory): the root directory recorded by the revision (FIXME: is this really <em>meta</em>data?)</li>
+<li>parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.</li>
+<li>extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)</li>
+<li>message: the message describing the revision</li>
+</ul>
 <p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
 <p>The serialization of the revision is a sequence of lines in the following order:</p>
 <ul>
