@@ -98,7 +98,50 @@ the [Darktable release 2.3.0](https://archive.softwareheritage.org/swh:1:rel:22e
 
 ## 5.5 Snapshots
 
-*TODO*
+Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (e.g., master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (e.g., stable, development, etc.).
+
+A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.
+
+Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, (FIXME?) for instance the default `"HEAD"` branch can point at another, more specific, `"refs/heads/main"` branch.
+
+To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.
+
+Then one proceeds to create a serialization of the snapshot as follows:
+
+ 1. sort the snapshot branches using the natural byte order of their name
+
+ 2. for each branch, with a given *name*, add a sequence of bytes composed of
+   - the type of the branch target:
+
+     - `"content"`, `"directory"`, `"revision"`, `"release"` or `"snapshot"` for each corresponding object type
+     - `"alias"` for branches referencing another branch;
+     - `"dangling"` for dangling branches (TODO: is this needed for this spec?)
+
+   - an ASCII space
+   - the branch name (as raw bytes)
+   - a NULL byte
+   - the length of the target identifier, as an ascii-encoded decimal number
+     (`"20"` for intrinsic identifiers, `"0"` for dangling
+     branches, the length of the name of the target branch for branch aliases)
+   - an ASCII colon (`":"`)
+   - the identifier of the target object pointed at by the branch:
+     - for contents, directories, revisions, releases or snapshots: their intrinsic
+       identifier as a string of 20 bytes
+     - for branch aliases, the name of the target branch (as a string of bytes)
+     - for dangling branches, the empty string
+
+   Note that, akin to the serialization of directories, there is no separator between
+   entries. Because of alias branches, target identifiers are of arbitrary
+   length and are length-encoded to avoid ambiguity.
+
+The intrinsic identifier of the snapshot is the SHA1 of the of the byte sequence obtained by juxtaposing
+ - the ASCII string `"snapshot"` (without quotes),
+ - an ASCII space,
+ - the length of the previously obtained serialization as ASCII-encoded decimal digits,
+ - a NULL byte,
+ - and the previously obtained serialization.
+
+
 
 As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` points to a
 [snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.
