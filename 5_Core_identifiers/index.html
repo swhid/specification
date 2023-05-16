@@ -208,7 +208,7 @@ a given point in time of its development on May 4th 2017.</p>
 <li>committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.</li>
 <li>directory (mandatory): the root directory recorded by the revision</li>
 <li>parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.</li>
-<li>extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision (FIXME: add examples, add constraints)</li>
+<li>extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision. The key must not contain the ASCII bytes for the space or LF characters; commonly used keys are a string of non-whitespace printable ASCII characters, such as <code>"encoding"</code> (where the value is interpreted as the encoding of the message field) or <code>"gpgsig"</code> (where the value is interpreted as an OpenPGP signature of the metadata of the revision).</li>
 <li>message: the message describing the revision</li>
 </ul>
 <p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
