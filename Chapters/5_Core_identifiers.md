@@ -216,13 +216,10 @@ Then one proceeds to create a serialization of the snapshot as follows:
     - the type of the branch target:
      	 - `"content"`, `"directory"`, `"revision"`, `"release"` or `"snapshot"` for each corresponding object type
      	 - `"alias"` for branches referencing another branch;
-     	 - `"dangling"` for dangling branches (TODO: is this needed for this spec?)
     - an ASCII space
     - the branch name (as raw bytes)
     - a NULL byte
-    - the length of the target identifier, as an ascii-encoded decimal number
-      (`"20"` for intrinsic identifiers, `"0"` for dangling
-      branches, the length of the name of the target branch for branch aliases)
+    - the length of the target identifier, as an ascii-encoded decimal number (`"20"` for intrinsic identifiers, the length of the name of the target branch for branch aliases)
     - an ASCII colon (`":"`)
     - the identifier of the target object pointed at by the branch:
      	- for contents, directories, revisions, releases or snapshots: their intrinsic
