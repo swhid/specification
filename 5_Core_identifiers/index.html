@@ -346,15 +346,12 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 <li>the type of the branch target:<ul>
 <li><code>"content"</code>, <code>"directory"</code>, <code>"revision"</code>, <code>"release"</code> or <code>"snapshot"</code> for each corresponding object type</li>
 <li><code>"alias"</code> for branches referencing another branch;</li>
-<li><code>"dangling"</code> for dangling branches (TODO: is this needed for this spec?)</li>
 </ul>
 </li>
 <li>an ASCII space</li>
 <li>the branch name (as raw bytes)</li>
 <li>a NULL byte</li>
-<li>the length of the target identifier, as an ascii-encoded decimal number
-  (<code>"20"</code> for intrinsic identifiers, <code>"0"</code> for dangling
-  branches, the length of the name of the target branch for branch aliases)</li>
+<li>the length of the target identifier, as an ascii-encoded decimal number (<code>"20"</code> for intrinsic identifiers, the length of the name of the target branch for branch aliases)</li>
 <li>an ASCII colon (<code>":"</code>)</li>
 <li>the identifier of the target object pointed at by the branch:<ul>
 <li>for contents, directories, revisions, releases or snapshots: their intrinsic
