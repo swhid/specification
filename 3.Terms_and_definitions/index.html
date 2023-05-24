@@ -136,8 +136,16 @@ for use in standardization at the following addresses:</p>
 <p>An identifier that can be computed directly from the object that it identifies, without needing a registry. Typical examples are cryptographically strong hashes.</p>
 <p><strong>repository</strong></p>
 <p>its definition</p>
-<p><strong>sha1_git</strong></p>
-<p>its definition</p>
+<p><strong>SHA1</strong></p>
+<p><em>SHA-1</em> (short for "Secure Hash Algorithm 1", also stylized as "<em>SHA1</em>") is a hash function that takes as input a sequence of bytes and produces a 160-bit (20-byte) hash value.
+The returned value is called <em>SHA1 checksum</em>, or simply <em>SHA1</em> when there is no risk of ambiguity between the function and the returned value.
+A detailed description of how to compute SHA1 is available in RFC-3174.</p>
+<p>In the wake of the <a href="https://shattered.io/">Shattered attack</a> of 2017 (see paper: <a href="../B.Bibliography/">Stevens2017Shattered</a>), it is now possible to produce collision-prone files that are different but return the same SHA1 checksums.
+It is however possible to detect, during SHA1 computation, such SHA1-colliding files using counter-cryptanalysis (see paper: <a href="../B.Bibliography/">Stevens2013Counter</a>).</p>
+<p>As collision-prone files are problematic from the point of view of unequivocal identification and integrity verification, the SWHID standard takes measures to avoid that such files are referenced using only SHA1 checksums.
+For the purpose of this specification document, the SHA1 function is therefore considered to be a <em>partial</em> function, that only returns a value when a Shattered-style collision is not detectable using the techniques described in <a href="../B.Bibliography/">Stevens2013Counter</a> and the reference implementation of it available at <a href="https://github.com/cr-marcstevens/sha1collisiondetection">https://github.com/cr-marcstevens/sha1collisiondetection</a> (version <code>stable-v1.0.3</code>, corresponding to Git commit ID <code>38096fc021ac5b8f8207c7e926f11feb6b5eb17c</code>).</p>
+<p>When such a collision is detected during SHA1 computation, no SHA1 can be obtained for the object in question and hence, depending on the context, a valid SWHID might not exist for it.</p>
+<p>Note that in most cases SHA1 in this specification are computed on objects after adding specific headers to them, making "trivial" collision-prone files still perfectly valid and hence referenceable using SWHIDs.</p>
 <p><strong>version control system</strong></p>
 <p>its definition</p>
               
