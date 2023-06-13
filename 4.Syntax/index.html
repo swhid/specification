@@ -153,16 +153,14 @@ the following grammar:</p>
 &lt;path_absolute_escaped&gt; ::= (* RFC 3987 absolute path *)
 </code></pre>
 
-<p>Where:</p>
+<p>The last two symbols are defined as:</p>
 <ul>
-<li><code>&lt;path_absolute_escaped&gt;</code> is an <code>&lt;ipath-absolute&gt;</code> from <a href="https://tools.ietf.org/html/rfc3987">RFC
-    3987</a>, and</li>
-<li><code>&lt;url_escaped&gt;</code> is a <a href="https://tools.ietf.org/html/rfc3987">RFC 3987</a>
-    IRI</li>
+<li><code>&lt;path_absolute_escaped&gt;</code> is an <code>ipath-absolute</code> from RFC-3987; and</li>
+<li><code>&lt;url_escaped&gt;</code> is an <code>IRI</code> as defined in RFC-3987.</li>
 </ul>
-<p>in either case all occurrences of <code>;</code> (and <code>%</code>, as required by the RFC)
+<p>In both of these, all occurrences of <code>;</code> (and <code>%</code>, as required by the RFC)
 have been percent-encoded (as <code>%3B</code> and <code>%25</code> respectively). Other
-characters <em>can</em> be percent-encoded, e.g., to improve readability and/or
+characters <em>may</em> be percent-encoded, e.g., to improve readability and/or
 embeddability of SWHID in other contexts.</p>
               
             </div>
