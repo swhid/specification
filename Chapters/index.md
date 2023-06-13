@@ -1,6 +1,6 @@
 # The SWHID Specification Version 0.3.0
 
-Copyright © 2022- SWHID Contributors.
+Copyright © 2022-2023 SWHID Contributors.
 
 This work is licensed under the Community Specification License 1.0.
 

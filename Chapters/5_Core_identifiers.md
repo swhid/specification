@@ -7,35 +7,34 @@ editions will use higher version numbers, possibly breaking backward
 compatibility. The third field is a tag that correspond to the type of object
 identified:
 
--   `cnt` for **contents**.
--   `dir` for **directories**,
--   `rev` for **revisions**,
--   `rel` for **releases**,
--   `snp` for **snapshots**,
+- `cnt` for **contents**.
+- `dir` for **directories**,
+- `rev` for **revisions**,
+- `rel` for **releases**,
+- `snp` for **snapshots**,
 
 The fourth and last field is the *intrinsic identifier* of the object.  In this
 version of the specification, this is a hex-encoded (using lowercase ASCII
 characters) SHA1 computed on the content and relevant metadata of the object
 itself, as follows.
-
 ## 5.1 Contents
 
 A *content* is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the `sha1_git` hash of it,
 i.e. the SHA1 of the byte sequence obtained by juxtaposing
 
- - the ASCII string `"blob"` (without quotes),
- - an ASCII space,
- - the length of the content as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the actual content of the file.
+- the ASCII string `"blob"` (without quotes),
+- an ASCII space,
+- the length of the content as ASCII-encoded decimal digits,
+- a NULL byte,
+- and the actual content of the file.
 
 No metadata is used for this type of object (in particular, notice that there
 is no file *name* mentioned here).
 
 As an example, `swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2` is the SWHID computed from [the full text of the GPL3 license](https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2)
 
-## 5.2 Directories ##
+## 5.2 Directories
 
 Directories are data structures commonly used in hierarchical file systems to group together files and other directories, and to hold relevant metadata about them, in the form of directory entries.
 
@@ -60,11 +59,11 @@ Then one proceeds to create a serialization of the directory as follows:
 
 The intrinsic identifier of the directory is the SHA1 of the byte sequence obtained by juxtaposing
 
- - the ASCII string `"tree"` (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.
+- the ASCII string `"tree"` (without quotes),
+- an ASCII space,
+- the length of the previously obtained serialization as ASCII-encoded decimal digits,
+- a NULL byte,
+- and the previously obtained serialization.
 
 As an example, `swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505` is the
 is the SWHID computed from
@@ -79,61 +78,61 @@ Each recorded copy of the root directory is known as a “revision”. It points
 
 The supported metadata is as follows:
 
- - author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.
- - author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.
- - author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.
- - committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.
- - committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.
- - committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.
- - directory (mandatory): the root directory recorded by the revision
- - parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.
- - extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision. The key must not contain the ASCII bytes for the space or LF characters; commonly used keys are a string of non-whitespace printable ASCII characters, such as `"encoding"` (where the value is interpreted as the encoding of the message field) or `"gpgsig"` (where the value is interpreted as an OpenPGP signature of the metadata of the revision).
- - message: the message describing the revision
+- author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.
+- author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.
+- author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.
+- committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.
+- committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.
+- committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.
+- directory (mandatory): the root directory recorded by the revision
+- parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.
+- extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision. The key must not contain the ASCII bytes for the space or LF characters; commonly used keys are a string of non-whitespace printable ASCII characters, such as `"encoding"` (where the value is interpreted as the encoding of the message field) or `"gpgsig"` (where the value is interpreted as an OpenPGP signature of the metadata of the revision).
+- message: the message describing the revision
 
 In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).
 
 The serialization of the revision is a sequence of lines in the following order:
 
- - the reference to the root directory:
-    - the ASCII string `"tree"` (4 bytes)
-    - an ASCII space
-    - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
-    - a LF
- - for each parent revision, in the order they've been provided, a reference to that revision:
-    - the ASCII string `"parent"` (6 bytes)
-    - an ASCII space
-    - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
-    - a LF
- - the author line:
-    - the ASCII string `"author"` (6 bytes)
-    - an ASCII space
-    - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
-    - an ASCII space
-    - the ASCII-encoded decimal representation of the author timestamp
-    - an ASCII space
-    - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
-    - a LF
- - the committer line:
-    - the ASCII string `"committer"` (9 bytes)
-    - an ASCII space
-    - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
-    - an ASCII space
-    - the ASCII-encoded decimal representation of the committer timestamp
-    - an ASCII space
-    - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
-    - a LF
- - the extra header lines; for each provided key/value pair, in the order they have been provided:
-    - the key
-    - an ASCII space
-    - the value, with each LF replaced by LF followed by an ASCII space
-    - a LF
- - if the message is defined:
-    - an extra LF (the message is separated from the header with two LFs)
-    - the commit message as a raw string of bytes
+- the reference to the root directory:
+  - the ASCII string `"tree"` (4 bytes)
+  - an ASCII space
+  - the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)
+  - a LF
+- for each parent revision, in the order they've been provided, a reference to that revision:
+  - the ASCII string `"parent"` (6 bytes)
+  - an ASCII space
+  - the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)
+  - a LF
+- the author line:
+  - the ASCII string `"author"` (6 bytes)
+  - an ASCII space
+  - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+  - an ASCII space
+  - the ASCII-encoded decimal representation of the author timestamp
+  - an ASCII space
+  - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+  - a LF
+- the committer line:
+  - the ASCII string `"committer"` (9 bytes)
+  - an ASCII space
+  - the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space
+  - an ASCII space
+  - the ASCII-encoded decimal representation of the committer timestamp
+  - an ASCII space
+  - the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space
+  - a LF
+- the extra header lines; for each provided key/value pair, in the order they have been provided:
+  - the key
+  - an ASCII space
+  - the value, with each LF replaced by LF followed by an ASCII space
+  - a LF
+- if the message is defined:
+  - an extra LF (the message is separated from the header with two LFs)
+  - the commit message as a raw string of bytes
 
 The intrinsic identifier of the revision is the SHA1 of the byte sequence obtained by juxtaposing
 
- - the ASCII string `"commit"` (without quotes),
+ - the ASCII string `"commit"` (6 bytes),
  - an ASCII space,
  - the length of the previously obtained serialization as ASCII-encoded decimal digits,
  - a NULL byte,
@@ -142,61 +141,59 @@ The intrinsic identifier of the revision is the SHA1 of the byte sequence obtain
 As an example, `swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d` is the SWHID computed from
 [a commit in the development history of Darktable](https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d), dated 16 January 2017, that added undo/redo supports for masks.
 
-
 ## 5.4 Releases
 
 Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.
 
 The supported metadata is as follows:
- - name (arbitrary byte sequence, mandatory): a name identifying the release
- - author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
- - author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
- - author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
- - target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
- - message: the message describing the release
+- name (arbitrary byte sequence, mandatory): a name identifying the release
+- author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
+- author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
+- author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
+- target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
+- message: the message describing the release
 
 In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.
 
 The serialization of the release is a sequence of lines in the following order:
 
- - the reference to the target object:
-    - the ASCII string `"object"` (6 bytes)
-    - an ASCII space
-    - the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)
-    - a LF
-    - the ASCII string `"type"` (4 bytes)
-    - an ASCII space
-    - an ASCII string referencing the type of the target object (`"commit"` for a revision, `"tree"` for a directory, `"tag"` for another release, `"blob"` for a content object)
-    - a LF
- - the name of the release:
-    - the ASCII string `"tag"` (3 bytes)
-    - an ASCII space
-    - the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space
-    - a LF
- - if there is an author, the author line:
-    - the ASCII string `"tagger"` (6 bytes)
-    - an ASCII space
-    - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
-    - an ASCII space
-    - the ASCII-encoded decimal representation of the author timestamp
-    - an ASCII space
-    - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
-    - a LF
- - if the message is defined:
-    - an extra LF (the message is separated from the header with two LFs)
-    - the commit message as a raw string of bytes
+- the reference to the target object:
+  - the ASCII string `"object"` (6 bytes)
+  - an ASCII space
+  - the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)
+  - a LF
+  - the ASCII string `"type"` (4 bytes)
+  - an ASCII space
+  - an ASCII string referencing the type of the target object (`"commit"` for a revision, `"tree"` for a directory, `"tag"` for another release, `"blob"` for a content object)
+  - a LF
+- the name of the release:
+  - the ASCII string `"tag"` (3 bytes)
+  - an ASCII space
+  - the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space
+  - a LF
+- if there is an author, the author line:
+  - the ASCII string `"tagger"` (6 bytes)
+  - an ASCII space
+  - the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space
+  - an ASCII space
+  - the ASCII-encoded decimal representation of the author timestamp
+  - an ASCII space
+  - the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space
+  - a LF
+- if the message is defined:
+  - an extra LF (the message is separated from the header with two LFs)
+  - the commit message as a raw string of bytes
 
 The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing
 
- - the ASCII string `"tag"` (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.
+- the ASCII string `"tag"` (3 bytes),
+- an ASCII space,
+- the length of the previously obtained serialization as ASCII-encoded decimal digits,
+- a NULL byte,
+- and the previously obtained serialization.
 
 As an example, `swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f` is the SWHID computed from
 the [Darktable release 2.3.0](https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f), dated 24 December 2016.
-
 
 ## 5.5 Snapshots
 
@@ -233,13 +230,11 @@ Then one proceeds to create a serialization of the snapshot as follows:
 
 The intrinsic identifier of the snapshot is the SHA1 of the byte sequence obtained by juxtaposing
 
- - the ASCII string `"snapshot"` (without quotes),
- - an ASCII space,
- - the length of the previously obtained serialization as ASCII-encoded decimal digits,
- - a NULL byte,
- - and the previously obtained serialization.
-
-
+- the ASCII string `"snapshot"` (8 bytes),
+- an ASCII space,
+- the length of the previously obtained serialization as ASCII-encoded decimal digits,
+- a NULL byte,
+- and the previously obtained serialization.
 
 As an example, `swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453` is the SWHID computed from
 [a snapshot of the entire Darktable Git repository](https://archive.softwareheritage.org/swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453) as it was on 4 May 2017 on GitHub.

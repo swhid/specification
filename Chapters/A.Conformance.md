@@ -17,4 +17,3 @@ and are dropped from subsequent editions,
 possibly with a replacement approach being provided.
 Such action involves *deprecating* those outdated features.
 This edition identifies all currently deprecated features.
-
