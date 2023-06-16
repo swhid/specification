@@ -11,25 +11,19 @@ qualifier is specified as a key/value pair, using `=` as a separator.
 
 The following *context qualifiers* are available:
 
-
-*TODO* For each one: Description, Metadata, Intent, Examples
-
 ## 6.1 Fragment qualifiers
 
 ### 6.1.1 Lines qualifier
-This qualifier allows to designate a line range inside a content.
-The range can be a single line number, or a pair of line numbers
-separated by `-`.
+
+A "line" in the context of a file content refers to a sequence of characters that ends with a line break. This line can contain text, code, or any other form of data. In this specification, the line break is the ASCII LF character.
+The "lines" qualifier allows to designate a line range inside a content.
+The range can be a single line number, or a pair of line numbers separated by the ASCII `-` character.
 
 For example, [`swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15`](https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15)
 designates the function `generate_intput_stream` that is found at lines 9 to 15 of the *content* with core SWHID `swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b`.
 
-Notice that the notion of "line number" is not always well defined: the content
-may be a binary file, or a file that uses non standard line termination
-character(s).
-
-*TODO*: decide whether we prescribe to use only the Unix line terminator (this will add extra ^M to DOS/Windows lines)
-
+Notice that the notion of "line number" is not always meaningful: the content
+may be a binary file, or a file that uses non standard line termination character(s).
 
 ## 6.2 Context qualifiers
 
@@ -55,24 +49,20 @@ indicates that the content seen previously with the function `generate_intput_st
 been seen in the Git repository at `https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git`, when
 its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9`. 
 
-*TODO*: explain where `visit` comes from?
-
 ### 6.2.3 Anchor qualifier
 This qualifier is used in conjunction with the `path` qualifier.
 It allows to identify a node in the Merkle DAG relative to which
 a *path to the object* is specified, as the core identifier of a directory,
-a revision, a release or a snapshot. See below for an example.
+a revision, a release or a snapshot. See the example provided for the
+`path` qualifier.
 
 ### 6.2.4 Path qualifier
 This qualifier allows to declare the *absolute file path*, from the *root
-directory* associated to the *anchor node*, to the object designated by the
-core SWHID identifier; when the anchor denotes a directory or a revision,
-and almost always when it\'s a release, the root directory is uniquely
-determined; when the anchor denotes a snapshot, the root directory is the
-one pointed to by `HEAD` branch (possibly indirectly), and undefined if such a
-reference is missing.
-	
-*TODO*: clarify this section (HEAD, branch, etc.)
+directory* associated to the *anchor node*, to the object designated by the core
+SWHID identifier; when the anchor denotes a directory, a revision or a release,
+the root directory is uniquely determined; when the anchor denotes a snapshot,
+the root directory is the first directory reachable from the `HEAD` branch,
+and undefined if such a reference is missing.
 
 For example, [`swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml`](https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml)
 indicates that the content seen previously with the function `generate_intput_stream` has
@@ -85,7 +75,7 @@ its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c478
 We recommend to equip identifiers meant to be shared with as many
 qualifiers as possible. While qualifiers may be listed in any order, it
 is good practice to present them in the following order:
-`origin`, `visit`, `anchor`, `path` or `lines`. Redundant information
+`origin`, `visit`, `anchor`, `path` and `lines`. Redundant information
 should be omitted: for example, if the *visit* is present, and the
 *path* is relative to the snapshot indicated there, then the *anchor*
 qualifier is superfluous; similarly, if the *path* is empty, it may be
