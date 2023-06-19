@@ -210,17 +210,21 @@ a given point in time of its development on May 4th 2017.</p>
 <p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
 <p>The serialization of the revision is a sequence of lines in the following order:</p>
 <ul>
-<li>the reference to the root directory:</li>
+<li>the reference to the root directory:<ul>
 <li>the ASCII string <code>"tree"</code> (4 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)</li>
 <li>a LF</li>
-<li>for each parent revision, in the order they've been provided, a reference to that revision:</li>
+</ul>
+</li>
+<li>for each parent revision, in the order they've been provided, a reference to that revision:<ul>
 <li>the ASCII string <code>"parent"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)</li>
 <li>a LF</li>
-<li>the author line:</li>
+</ul>
+</li>
+<li>the author line:<ul>
 <li>the ASCII string <code>"author"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
@@ -229,7 +233,9 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>the committer line:</li>
+</ul>
+</li>
+<li>the committer line:<ul>
 <li>the ASCII string <code>"committer"</code> (9 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space</li>
@@ -238,14 +244,20 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>the extra header lines; for each provided key/value pair, in the order they have been provided:</li>
+</ul>
+</li>
+<li>the extra header lines; for each provided key/value pair, in the order they have been provided:<ul>
 <li>the key</li>
 <li>an ASCII space</li>
 <li>the value, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>if the message is defined:</li>
+</ul>
+</li>
+<li>if the message is defined:<ul>
 <li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
 </ul>
 <p>The intrinsic identifier of the revision is the SHA1 of the byte sequence obtained by juxtaposing</p>
 <ul>
@@ -269,7 +281,7 @@ a given point in time of its development on May 4th 2017.</p>
 <p>In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.</p>
 <p>The serialization of the release is a sequence of lines in the following order:</p>
 <ul>
-<li>the reference to the target object:</li>
+<li>the reference to the target object:<ul>
 <li>the ASCII string <code>"object"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)</li>
@@ -278,12 +290,16 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>an ASCII string referencing the type of the target object (<code>"commit"</code> for a revision, <code>"tree"</code> for a directory, <code>"tag"</code> for another release, <code>"blob"</code> for a content object)</li>
 <li>a LF</li>
-<li>the name of the release:</li>
+</ul>
+</li>
+<li>the name of the release:<ul>
 <li>the ASCII string <code>"tag"</code> (3 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>if there is an author, the author line:</li>
+</ul>
+</li>
+<li>if there is an author, the author line:<ul>
 <li>the ASCII string <code>"tagger"</code> (6 bytes)</li>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
@@ -292,9 +308,13 @@ a given point in time of its development on May 4th 2017.</p>
 <li>an ASCII space</li>
 <li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
 <li>a LF</li>
-<li>if the message is defined:</li>
+</ul>
+</li>
+<li>if the message is defined:<ul>
 <li>an extra LF (the message is separated from the header with two LFs)</li>
 <li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
 </ul>
 <p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing</p>
 <ul>
