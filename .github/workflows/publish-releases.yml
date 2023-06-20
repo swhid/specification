@@ -26,5 +26,5 @@ jobs:
        git config --local user.name "github-actions[bot]"
     - name: Deploy MkDoc with mike 🚀
       run: |
-      mike deploy --push ${{ steps.extract_branch.outputs.branch }}
+       mike deploy --push ${{ steps.extract_branch.outputs.branch }}
 

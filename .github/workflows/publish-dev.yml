@@ -23,5 +23,5 @@ jobs:
        git config --local user.name "github-actions[bot]"
     - name: Deploy MkDoc with mike 🚀
       run: |
-      mike deploy --push dev
+       mike deploy --push dev
 
