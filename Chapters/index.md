@@ -1,4 +1,4 @@
-# The SWHID Specification Version 0.3.0
+# The SWHID Specification Version 1.0
 
 Copyright © 2022-2023 SWHID Contributors.
 
