@@ -1,0 +1,30 @@
+name: Generate [version] documentation
+
+on:
+  push:
+    branches:
+    - 'v*.*'
+
+jobs:
+  build_current:
+    name: Build current
+    runs-on: ubuntu-latest
+    container: python:3
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'main'
+    - name: Install pre-requisites
+      run: pip install -r requirements.txt
+    - name: Install mike
+      run: pip install mike==1.2.0
+    - name: Build
+      run: mkdocs build -v --clean
+    - name: Configure Git user
+      run: |
+       git config --local user.email "github-actions[bot]@users.noreply.github.com"
+       git config --local user.name "github-actions[bot]"
+    - name: Deploy MkDoc with mike 🚀
+      run: |
+      mike deploy --push ${{ steps.extract_branch.outputs.branch }}
+
