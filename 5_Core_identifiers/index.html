@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Clause 5: Core Identifiers - specification v1.0</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Clause 5: Core Identifiers";
+        var mkdocs_page_input_path = "5_Core_identifiers.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> specification v1.0
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Copyright</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../0.Foreword/">Foreword</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../0.Introduction/">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1.Scope/">Clause 1: Scope</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2.Normative_references/">Clause 2: Normative references</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3.Terms_and_definitions/">Clause 3: Terms and definitions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4.Syntax/">Clause 4: Syntax</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Clause 5: Core Identifiers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#51-contents">5.1 Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#52-directories">5.2 Directories</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#53-revisions">5.3 Revisions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#54-releases">5.4 Releases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#55-snapshots">5.5 Snapshots</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note-on-compatibility-with-git">Note on compatibility with Git</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_Qualified_identifiers/">Clause 6: Qualified Identifiers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../A.Conformance/">Annex A: Conformance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../B.Bibliography/">Annex B: Bibliography</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">specification v1.0</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Clause 5: Core Identifiers</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="5-core-identifiers">5 Core identifiers</h1>
+<p>A core SWHID identifier is composed of four fields, separated by a colon
+<code>:</code>.  The <code>swh</code> prefix makes it explicit that this is a SWHID identifier.  <code>1</code>
+(<code>&lt;scheme_version&gt;</code>) is the current version of this identifier <em>scheme</em>. Future
+editions will use higher version numbers, possibly breaking backward
+compatibility. The third field is a tag that correspond to the type of object
+identified:</p>
+<ul>
+<li><code>cnt</code> for <strong>contents</strong>.</li>
+<li><code>dir</code> for <strong>directories</strong>,</li>
+<li><code>rev</code> for <strong>revisions</strong>,</li>
+<li><code>rel</code> for <strong>releases</strong>,</li>
+<li><code>snp</code> for <strong>snapshots</strong>,</li>
+</ul>
+<p>The fourth and last field is the <em>intrinsic identifier</em> of the object.  In this
+version of the specification, this is a hex-encoded (using lowercase ASCII
+characters) SHA1 computed on the content and relevant metadata of the object
+itself, as follows.</p>
+<h2 id="51-contents">5.1 Contents</h2>
+<p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
+For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
+i.e. the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"blob"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the content as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the actual content of the file.</li>
+</ul>
+<p>No metadata is used for this type of object (in particular, notice that there
+is no file <em>name</em> mentioned here).</p>
+<p>As an example, <code>swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2</code> is the SWHID computed from <a href="https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2">the full text of the GPL3 license</a></p>
+<h2 id="52-directories">5.2 Directories</h2>
+<p>Directories are data structures commonly used in hierarchical file systems to group together files and other directories, and to hold relevant metadata about them, in the form of directory entries.</p>
+<p>This version of the SWHID standard adopts the same convention as the popular <em>git</em> version control system, and only takes into account as metadata the name of the directory entries (as a sequence of arbitrary bytes, excluding ASCII '/' and the NULL byte) and a simplified representation of the access rights.</p>
+<p>The names of entries in a directory must be distinct from one another.</p>
+<p>In order to compute the intrinsic identifier of a directory, it is necessary to compute first the SWHID of each object listed in the directory.</p>
+<p>Then one proceeds to create a serialization of the directory as follows:</p>
+<ol>
+<li>
+<p>sort the directory entries using the following algorithm</p>
+<ol>
+<li>for each entry pointing to a <em>directory</em>, append an ASCII '/' to its name</li>
+<li>sort all entries using the natural byte order of their (modified) name</li>
+</ol>
+</li>
+<li>
+<p>for each entry, with a given <em>name</em> (unmodified), add a sequence of bytes composed of</p>
+<ol>
+<li>the normalized access rights, encoded as a sequence of ASCII-encoded octal digits ('100644' for regular files, '100755' for executable files, '120000' for symbolic links, '40000' for directories),</li>
+<li>an ASCII space,</li>
+<li>the <em>name</em> as a raw string of bytes</li>
+<li>a NULL byte</li>
+<li>the <em>intrinsic identifier</em> of the <em>content</em> or <em>directory</em>, encoded as a sequence of 20 bytes</li>
+</ol>
+</li>
+</ol>
+<p>The intrinsic identifier of the directory is the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"tree"</code> (without quotes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
+<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> is the
+is the SWHID computed from
+<a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> as
+a given point in time of its development on May 4th 2017.</p>
+<h2 id="53-revisions">5.3 Revisions</h2>
+<p>Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and record their changes.</p>
+<p>Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).</p>
+<p>The supported metadata is as follows:</p>
+<ul>
+<li>author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.</li>
+<li>author timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was authored.</li>
+<li>author timezone offset (arbitrary byte sequence): UTC offset at which the revision was authored, usually an ASCII-encoded [+/-]HHMM specification.</li>
+<li>committer (arbitrary byte sequence, mandatory): generally contains the name and email address of the committer of the revision.</li>
+<li>committer timestamp (decimal timestamp from the Unix epoch, mandatory): the date at which the revision was committed.</li>
+<li>committer timezone offset (arbitrary byte sequence): UTC offset at which the revision was committed, usually an ASCII-encoded [+/-]HHMM specification.</li>
+<li>directory (mandatory): the root directory recorded by the revision</li>
+<li>parent revisions (ordered list of revisions): the immediately preceding revisions in the development timeline. Can be empty for an initial revision, and have multiple revisions when multiple branches of history are being merged.</li>
+<li>extra headers (ordered list of byte key/value pairs): arbitrary additional metadata attached to the revision. The key must not contain the ASCII bytes for the space or LF characters; commonly used keys are a string of non-whitespace printable ASCII characters, such as <code>"encoding"</code> (where the value is interpreted as the encoding of the message field) or <code>"gpgsig"</code> (where the value is interpreted as an OpenPGP signature of the metadata of the revision).</li>
+<li>message: the message describing the revision</li>
+</ul>
+<p>In order to compute the intrinsic identifier of a revision, it is necessary to first compute the intrinsic identifier of the root directory recorded by the revision, as well as the intrinsic identifier of all parent revisions (recursively).</p>
+<p>The serialization of the revision is a sequence of lines in the following order:</p>
+<ul>
+<li>the reference to the root directory:<ul>
+<li>the ASCII string <code>"tree"</code> (4 bytes)</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded hexadecimal intrinsic identifier of the directory (40 ASCII bytes)</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>for each parent revision, in the order they've been provided, a reference to that revision:<ul>
+<li>the ASCII string <code>"parent"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded hexadecimal intrinsic identifier of the parent revision (40 ASCII bytes)</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>the author line:<ul>
+<li>the ASCII string <code>"author"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded decimal representation of the author timestamp</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>the committer line:<ul>
+<li>the ASCII string <code>"committer"</code> (9 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the committer name and email, with each LF replaced by LF followed by an ASCII space</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded decimal representation of the committer timestamp</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the committer timezone offset, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>the extra header lines; for each provided key/value pair, in the order they have been provided:<ul>
+<li>the key</li>
+<li>an ASCII space</li>
+<li>the value, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>if the message is defined:<ul>
+<li>an extra LF (the message is separated from the header with two LFs)</li>
+<li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
+</ul>
+<p>The intrinsic identifier of the revision is the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"commit"</code> (6 bytes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
+<p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> is the SWHID computed from
+<a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
+<h2 id="54-releases">5.4 Releases</h2>
+<p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.</p>
+<p>The supported metadata is as follows:
+- name (arbitrary byte sequence, mandatory): a name identifying the release
+- author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
+- author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
+- author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
+- target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
+- message: the message describing the release</p>
+<p>In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.</p>
+<p>The serialization of the release is a sequence of lines in the following order:</p>
+<ul>
+<li>the reference to the target object:<ul>
+<li>the ASCII string <code>"object"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded hexadecimal intrinsic identifier of the target object (40 ASCII bytes)</li>
+<li>a LF</li>
+<li>the ASCII string <code>"type"</code> (4 bytes)</li>
+<li>an ASCII space</li>
+<li>an ASCII string referencing the type of the target object (<code>"commit"</code> for a revision, <code>"tree"</code> for a directory, <code>"tag"</code> for another release, <code>"blob"</code> for a content object)</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>the name of the release:<ul>
+<li>the ASCII string <code>"tag"</code> (3 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the release name, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>if there is an author, the author line:<ul>
+<li>the ASCII string <code>"tagger"</code> (6 bytes)</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author name and email, with each LF replaced by LF followed by an ASCII space</li>
+<li>an ASCII space</li>
+<li>the ASCII-encoded decimal representation of the author timestamp</li>
+<li>an ASCII space</li>
+<li>the string of bytes provided for the author timezone offset, with each LF replaced by LF followed by an ASCII space</li>
+<li>a LF</li>
+</ul>
+</li>
+<li>if the message is defined:<ul>
+<li>an extra LF (the message is separated from the header with two LFs)</li>
+<li>the commit message as a raw string of bytes</li>
+</ul>
+</li>
+</ul>
+<p>The intrinsic identifier of the release is the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"tag"</code> (3 bytes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
+<p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> is the SWHID computed from
+the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
+<h2 id="55-snapshots">5.5 Snapshots</h2>
+<p>Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (e.g., master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (e.g., stable, development, etc.).</p>
+<p>A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.</p>
+<p>Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, for instance the default <code>"HEAD"</code> branch can point at another, more specific, <code>"refs/heads/main"</code> branch.</p>
+<p>To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.</p>
+<p>Then one proceeds to create a serialization of the snapshot as follows:</p>
+<ol>
+<li>
+<p>sort the snapshot branches using the natural byte order of their name</p>
+</li>
+<li>
+<p>for each branch, with a given <em>name</em>, add a sequence of bytes composed of</p>
+<ul>
+<li>the type of the branch target:<ul>
+<li><code>"content"</code>, <code>"directory"</code>, <code>"revision"</code>, <code>"release"</code> or <code>"snapshot"</code> for each corresponding object type</li>
+<li><code>"alias"</code> for branches referencing another branch;</li>
+</ul>
+</li>
+<li>an ASCII space</li>
+<li>the branch name (as raw bytes)</li>
+<li>a NULL byte</li>
+<li>the length of the target identifier, as an ascii-encoded decimal number (<code>"20"</code> for intrinsic identifiers, the length of the name of the target branch for branch aliases)</li>
+<li>an ASCII colon (<code>":"</code>)</li>
+<li>the identifier of the target object pointed at by the branch:<ul>
+<li>for contents, directories, revisions, releases or snapshots: their intrinsic
+  identifier as a string of 20 bytes</li>
+<li>for branch aliases, the name of the target branch (as a string of bytes)</li>
+<li>for dangling branches, the empty string</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Note that, akin to the serialization of directories, there is no separator between
+   entries. Because of alias branches, target identifiers are of arbitrary
+   length and are length-encoded to avoid ambiguity.</p>
+<p>The intrinsic identifier of the snapshot is the SHA1 of the byte sequence obtained by juxtaposing</p>
+<ul>
+<li>the ASCII string <code>"snapshot"</code> (8 bytes),</li>
+<li>an ASCII space,</li>
+<li>the length of the previously obtained serialization as ASCII-encoded decimal digits,</li>
+<li>a NULL byte,</li>
+<li>and the previously obtained serialization.</li>
+</ul>
+<p>As an example, <code>swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453</code> is the SWHID computed from
+<a href="https://archive.softwareheritage.org/swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453">a snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
+<h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
+<p>SWHIDs for contents, directories, revisions, and releases are, at present,
+compatible with the way the current version of <a href="https://git-scm.com/">Git</a> 
+proceeds for 
+<a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">computing identifiers</a> for
+its objects. The <code>&lt;object_id&gt;</code> part of a SWHID for a content object is the Git
+blob identifier of any file with the same content; for a revision it is the Git
+commit identifier for the same revision, etc.  This is not the case for snapshot
+identifiers, as Git does not have a corresponding object type.</p>
+<p>Git compatibility is practical, but incidental and is not guaranteed to be
+maintained in future versions of this standard, nor for different versions of
+Git.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../4.Syntax/" class="btn btn-neutral float-left" title="Clause 4: Syntax"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../6_Qualified_identifiers/" class="btn btn-neutral float-right" title="Clause 6: Qualified Identifiers">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - SWHID Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../4.Syntax/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../6_Qualified_identifiers/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
