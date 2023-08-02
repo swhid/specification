@@ -37,6 +37,10 @@ For example, `swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bytes=154-315`
 designates the same function `generate_intput_stream` as in the example above, but
 does not rely on any convention about line numbers.
 
+### 6.1.3 Bytes and line qualifiers are mutually exclusive
+
+As clearly defined in the grammar, bytes and line qualifiers are mutually exclusive, so only one of them can be used in a valid SWHID.
+
 ## 6.2 Context qualifiers
 
 ### 6.2.1 Origin qualifier
