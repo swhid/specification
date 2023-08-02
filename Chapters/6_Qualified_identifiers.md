@@ -39,7 +39,7 @@ does not rely on any convention about line numbers.
 
 ### 6.1.3 Bytes and line qualifiers are mutually exclusive
 
-As clearly defined in the grammar, bytes and line qualifiers are mutually exclusive, so only one of them can be used in a valid SWHID.
+As clearly defined in the grammar, bytes and line qualifiers are mutually exclusive, so only one of them can be used in a valid SWHID. A conformant implementation MAY accept a SWHID that violates this constraint, by ingoring the `lines` qualifier when a `bytes` qualifier is present.
 
 ## 6.2 Context qualifiers
 
