@@ -18,7 +18,7 @@ The following *context qualifiers* are available:
 A "line" in the context of a file content refers to a sequence of characters that ends with a line break. This line can contain text, code, or any other form of data. In this specification, the line break is the ASCII LF character.
 The "lines" qualifier allows to designate a line range inside a content.
 The range can be a single line number, or a pair of line numbers separated by the ASCII `-` character.
-Line numbers start from 1.
+Line numbers start from 1, and range is inclusive, i.e. the fragment includes both the lines numbered as start and end of the range.
 
 For example, [`swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15`](https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15)
 designates the function `generate_intput_stream` that is found at lines 9 to 15 of the *content* with core SWHID `swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b`.
@@ -30,7 +30,7 @@ may be a binary file, or a file that uses non standard line termination characte
 
 To overcome the limitations of the lines qualifier, the bytes qualifier allows
 to designate a byte range inside a content.  The range can be a single byte number, or a pair of byte numbers separated by `-`.
-Byte numbers start from 0.
+Byte numbers start from 0, and range is inclusive, i.e. the fragment includes both the bytes numbered as start and end of the range.
 If the range is a single byte number, it designates the byte at that specific position.
 
 For example, `swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bytes=154-315`
