@@ -14,7 +14,7 @@ jobs:
     - name: Install pre-requisites
       run: pip install -r requirements.txt
     - name: Install mike
-      run: pip install mike==1.2.0
+      run: pip install mike
     - name: Build
       run: mkdocs build -v --clean
     - name: Configure Git user
