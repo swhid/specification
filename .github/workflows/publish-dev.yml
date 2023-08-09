@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: 'main'
     - name: Install pre-requisites
@@ -19,11 +19,10 @@ jobs:
       run: mkdocs build -v --clean
     - name: Configure Git user
       run: |
+         git fetch origin gh-pages --depth=1
          git config --global user.email "github-actions[bot]@users.noreply.github.com"
          git config --global user.name "github-actions[bot]"
          git config --global --add safe.directory '*'
     - name: Deploy MkDoc with mike 🚀
       run: |
-         git fetch origin gh-pages
-         git merge origin/gh-pages
          mike deploy --push dev
