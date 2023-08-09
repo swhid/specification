@@ -24,4 +24,6 @@ jobs:
          git config --global --add safe.directory '*'
     - name: Deploy MkDoc with mike 🚀
       run: |
+         git fetch origin gh-pages
+         git merge origin/gh-pages
          mike deploy --push dev
