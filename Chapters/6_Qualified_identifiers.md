@@ -86,18 +86,34 @@ indicates that the content seen previously with the function `generate_intput_st
 been seen in the Git repository at `https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git`, when
 its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9`, and that it is named `simplefarm.ml` in the directory `Simplefarm` contained in the directory `Examples` contained in the root directory associated to the revision with core SWHID `swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0`.
 
+### 6.3 Comparing qualified SWHIDs
 
-### 6.3 Recommendations
+One can determine whether two software artifacts are identical (bit by bit) by
+comparing their core SWHIDs, ignoring all qualifiers. If the core SWHIDs match,
+the software artifacts they represent are identical.
+
+To determine if two SWHIDs represent the same software artifact (or fragment
+thereof) in the same context, one must also compare their qualifiers. Two SWHIDs
+are considered equivalent in context if:
+
+- They both have the same set of qualifiers.
+- The values of these qualifiers are identical. For instance, if both SWHIDs
+  have an `anchor` qualifier, the core SWHID values of these qualifiers should
+  match. Similarly, if both have a `lines` qualifier, their values should be the
+  same.
+
+### 6.4 Recommendations
 
 We recommend to equip identifiers meant to be shared with as many
 qualifiers as possible. While qualifiers may be listed in any order, it
-is good practice to present them in the following order:
-`origin`, `visit`, `anchor`, `path`, `lines` or `bytes`. Redundant information
-should be omitted: for example, if the *visit* is present, and the
-*path* is relative to the snapshot indicated there, then the *anchor*
-qualifier is superfluous; similarly, if the *path* is empty, it may be
-omitted.
+is good practice to present them in the following canonical order:
+`origin`, `visit`, `anchor`, `path`, `lines` or `bytes`. 
+
+By adhering to this order, it becomes easier to visually inspect and compare
+SWHIDs, especially when dealing with a large number of identifiers.
 
 Here is an example: [`swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15`](https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15)
 
-
+Redundant information should be omitted: for example, if the *visit* is present,
+and the *path* is relative to the snapshot indicated there, then the *anchor*
+qualifier is superfluous; similarly, if the *path* is empty, it may be omitted.
