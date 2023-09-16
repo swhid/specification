@@ -89,7 +89,7 @@ its full state had the SWHID core identifier `swh:1:snp:d7f1b9eb7ccb596c2622c478
 ### 6.3 Comparing qualified SWHIDs
 
 One can determine whether two software artifacts are identical (bit by bit) by
-comparing their core SWHIDs, ignoring all qualifiers. If the core SWHIDs match,
+comparing their core SWHIDs, ignoring all qualifiers. If the core SWHIDs are equal,
 the software artifacts they represent are identical.
 
 To determine if two SWHIDs represent the same software artifact (or fragment
@@ -98,9 +98,10 @@ are considered equivalent in context if:
 
 - They both have the same set of qualifiers.
 - The values of these qualifiers are identical. For instance, if both SWHIDs
-  have an `anchor` qualifier, the core SWHID values of these qualifiers should
-  match. Similarly, if both have a `lines` qualifier, their values should be the
-  same.
+  have an `anchor` qualifier, the core SWHID values of these qualifiers are
+  identical. Similarly, if both have a `lines` qualifier, their values are identical.
+
+Note that the order of the qualifiers does not matter for comparison purposes.
 
 ### 6.4 Recommendations
 
