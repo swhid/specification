@@ -9,7 +9,7 @@ sequence of qualifiers that may identify subparts of a software artefact
 identifier and the optional qualifiers, as well as between qualifiers. Each
 qualifier is specified as a key/value pair, using `=` as a separator.
 
-The following *context qualifiers* are available:
+The following *qualifiers* are available:
 
 ## 6.1 Fragment qualifiers
 
