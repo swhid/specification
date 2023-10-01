@@ -124,23 +124,24 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="5-core-identifiers">5 Core identifiers</h1>
-<p>A core SWHID identifier is composed of four fields, separated by a colon
-<code>:</code>.  The <code>swh</code> prefix makes it explicit that this is a SWHID identifier.  <code>1</code>
-(<code>&lt;scheme_version&gt;</code>) is the current version of this identifier <em>scheme</em>. Future
-editions will use higher version numbers, possibly breaking backward
-compatibility. The third field is a tag that correspond to the type of object
+<p>A core SWHID identifier is composed of four fields, separated by a colon <code>:</code>.</p>
+<p>The first field is the <em>type of the identifier</em>
+and it is defined to be <code>swh</code>.</p>
+<p>The second field is the <em>version of the identifier scheme</em>
+and for this version of the specification
+it is defined to be <code>1</code>.</p>
+<p>The third field is a tag corresponding to the <em>type of object</em>
 identified:</p>
 <ul>
-<li><code>cnt</code> for <strong>contents</strong>.</li>
-<li><code>dir</code> for <strong>directories</strong>,</li>
-<li><code>rev</code> for <strong>revisions</strong>,</li>
-<li><code>rel</code> for <strong>releases</strong>,</li>
-<li><code>snp</code> for <strong>snapshots</strong>,</li>
+<li><code>cnt</code> for <strong>contents</strong> (see 5.1)</li>
+<li><code>dir</code> for <strong>directories</strong> (see 5.2)</li>
+<li><code>rev</code> for <strong>revisions</strong> (see 5.3)</li>
+<li><code>rel</code> for <strong>releases</strong> (see 5.4)</li>
+<li><code>snp</code> for <strong>snapshots</strong> (see 5.5)</li>
 </ul>
-<p>The fourth and last field is the <em>intrinsic identifier</em> of the object.  In this
-version of the specification, this is a hex-encoded (using lowercase ASCII
-characters) SHA1 computed on the content and relevant metadata of the object
-itself, as follows.</p>
+<p>The fourth field is the <em>intrinsic identifier</em> of the object.
+This is a hex-encoded (using lowercase ASCII characters) hash value
+computed by the content and relevant metadata of the object.</p>
 <h2 id="51-contents">5.1 Contents</h2>
 <p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
