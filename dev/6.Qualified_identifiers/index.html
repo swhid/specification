@@ -85,8 +85,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#612-bytes-qualifier">6.1.2 Bytes qualifier</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#613-bytes-and-line-qualifiers-are-mutually-exclusive">6.1.3 Bytes and line qualifiers are mutually exclusive</a>
-    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#62-context-qualifiers">6.2 Context qualifiers</a>
@@ -95,9 +93,9 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#622-visit-qualifier">6.2.2 Visit qualifier</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#623-anchor-qualifier">6.2.3 Anchor qualifier</a>
+    <li class="toctree-l3"><a class="reference internal" href="#623-path-qualifier">6.2.3 Path qualifier</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#624-path-qualifier">6.2.4 Path qualifier</a>
+    <li class="toctree-l3"><a class="reference internal" href="#624-anchor-qualifier">6.2.4 Anchor qualifier</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#63-comparing-qualified-swhids">6.3 Comparing qualified SWHIDs</a>
     </li>
@@ -142,13 +140,25 @@
                 <h1 id="6-qualified-identifiers">6 Qualified identifiers</h1>
 <h3 id="qualifiers">Qualifiers</h3>
 <p>A qualified, or full, SWHID is composed of a core SWHID identifier, and a
-sequence of qualifiers that may identify subparts of a software artefact
-(<em>fragment qualifiers</em>), or provide additional context on the software artefact
-(<em>context qualifiers</em>). The <code>;</code> character is used a separator between the core
-identifier and the optional qualifiers, as well as between qualifiers. Each
-qualifier is specified as a key/value pair, using <code>=</code> as a separator.</p>
-<p>The following <em>qualifiers</em> are available:</p>
+sequence of qualifiers.</p>
+<p>Qualifiers may be:</p>
+<ul>
+<li><em>fragment qualifiers</em> (see 6.1), that identify subparts of a software artefact; or</li>
+<li><em>context qualifiers</em> (see 6.2), that provide additional context on the software artefact.</li>
+</ul>
+<p>Each qualifier is specified as a key-value pair, using a <code>=</code> character as a separator.
+Qualifiers are separated from the core identifier and from each other by using a <code>;</code> character.</p>
+<p>Some qualifiers are valid for specific object types,
+and the validity of some qualifiers depend on the presence of other qualifiers.
+Conformant implementation MUST not generate invalid qualifiers
+or qualifier combinations and MUST ignore them if present,
+as detailed in the following sections.</p>
 <h2 id="61-fragment-qualifiers">6.1 Fragment qualifiers</h2>
+<p>There are two fragment qualifiers, <code>lines</code> and <code>bytes</code>.
+Fragment qualifiers are only valid for objects of type content.</p>
+<p>The two fragment qualifiers are mutually exclusive: a valid SWHID MUST not contain both.
+A conformant implementation MAY accept a SWHID that violates this constraint,
+by ignoring the <code>lines</code> qualifier when the <code>bytes</code> qualifier is present.</p>
 <h3 id="611-lines-qualifier">6.1.1 Lines qualifier</h3>
 <p>A "line" in the context of a file content refers to a sequence of characters that ends with a line break. This line can contain text, code, or any other form of data. In this specification, the line break is the ASCII LF character.
 The "lines" qualifier allows to designate a line range inside a content.
@@ -166,9 +176,6 @@ If the range is a single byte number, it designates the byte at that specific po
 <p>For example, <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bytes=154-315</code>
 designates the same function <code>generate_intput_stream</code> as in the example above, but
 does not rely on any convention about line numbers.</p>
-<h3 id="613-bytes-and-line-qualifiers-are-mutually-exclusive">6.1.3 Bytes and line qualifiers are mutually exclusive</h3>
-<p>The <code>bytes</code> and <code>lines</code> qualifiers are mutually exclusive: a valid SWHID MUST not contain both qualifiers.
-A conformant implementation MAY accept a SWHID that violates this constraint, by ignoring the <code>lines</code> qualifier when the <code>bytes</code> qualifier is present.</p>
 <h2 id="62-context-qualifiers">6.2 Context qualifiers</h2>
 <h3 id="621-origin-qualifier">6.2.1 Origin qualifier</h3>
 <p>This qualifier allows to declare the <em>software origin</em> where the
@@ -187,13 +194,9 @@ of the repository where the object has been found or observed.</p>
 indicates that the content seen previously with the function <code>generate_intput_stream</code> has
 been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
 its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>. </p>
-<h3 id="623-anchor-qualifier">6.2.3 Anchor qualifier</h3>
-<p>This qualifier is used in conjunction with the <code>path</code> qualifier.
-It allows to identify a node in the Merkle DAG relative to which
-a <em>path to the object</em> is specified, as the core identifier of a directory,
-a revision, a release or a snapshot. See the example provided for the
-<code>path</code> qualifier.</p>
-<h3 id="624-path-qualifier">6.2.4 Path qualifier</h3>
+<p>This qualifier is only valid when the <code>origin</code> qualifier is also present.
+Otherwise, it MUST be ignored.</p>
+<h3 id="623-path-qualifier">6.2.3 Path qualifier</h3>
 <p>This qualifier allows to declare the <em>absolute file path</em>, from the <em>root
 directory</em> associated to the <em>anchor node</em>, to the object designated by the core
 SWHID identifier; when the anchor denotes a directory, a revision or a release,
@@ -204,6 +207,16 @@ and undefined if such a reference is missing.</p>
 indicates that the content seen previously with the function <code>generate_intput_stream</code> has
 been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
 its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>, and that it is named <code>simplefarm.ml</code> in the directory <code>Simplefarm</code> contained in the directory <code>Examples</code> contained in the root directory associated to the revision with core SWHID <code>swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0</code>.</p>
+<p>This qualifier is only valid when the object type is not content.
+Otherwise, it MUST be ignored.</p>
+<h3 id="624-anchor-qualifier">6.2.4 Anchor qualifier</h3>
+<p>This qualifier is used in conjunction with the <code>path</code> qualifier.
+It allows to identify a node in the Merkle DAG relative to which
+a <em>path to the object</em> is specified, as the core identifier of a directory,
+a revision, a release or a snapshot. See the example provided for the
+<code>path</code> qualifier.</p>
+<p>This qualifier is only valid when the <code>path</code> qualifier is also present.
+Otherwise, it MUST be ignored.</p>
 <h3 id="63-comparing-qualified-swhids">6.3 Comparing qualified SWHIDs</h3>
 <p>One can determine whether two software artifacts are identical (bit by bit) by
 comparing their core SWHIDs, ignoring all qualifiers. If the core SWHIDs are equal,
