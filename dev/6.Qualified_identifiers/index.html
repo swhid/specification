@@ -165,7 +165,7 @@ The "lines" qualifier allows to designate a line range inside a content.
 The range can be a single line number, or a pair of line numbers separated by the ASCII <code>-</code> character.
 Line numbers start from 1, and range is inclusive, i.e. the fragment includes both the lines numbered as start and end of the range.</p>
 <p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15</code></a>
-designates the function <code>generate_intput_stream</code> that is found at lines 9 to 15 of the <em>content</em> with core SWHID <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b</code>.</p>
+designates the function <code>generate_input_stream</code> that is found at lines 9 to 15 of the <em>content</em> with core SWHID <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b</code>.</p>
 <p>Notice that the notion of "line number" is not always meaningful: the content
 may be a binary file, or a file that uses non standard line termination character(s).</p>
 <h3 id="612-bytes-qualifier">6.1.2 Bytes qualifier</h3>
@@ -174,14 +174,14 @@ to designate a byte range inside a content.  The range can be a single byte numb
 Byte numbers start from 0, and range is inclusive, i.e. the fragment includes both the bytes numbered as start and end of the range.
 If the range is a single byte number, it designates the byte at that specific position.</p>
 <p>For example, <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bytes=154-315</code>
-designates the same function <code>generate_intput_stream</code> as in the example above, but
+designates the same function <code>generate_input_stream</code> as in the example above, but
 does not rely on any convention about line numbers.</p>
 <h2 id="62-context-qualifiers">6.2 Context qualifiers</h2>
 <h3 id="621-origin-qualifier">6.2.1 Origin qualifier</h3>
 <p>This qualifier allows to declare the <em>software origin</em> where the
 object has been found or observed, as an URI.</p>
 <p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code></a>
-indicates that the content seen previously with the function <code>generate_intput_stream</code> has
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
 been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code></p>
 <p>This qualifier may be helpful to get hold of the full repository where a
 content has been found, but there is no guarantee of success, as an origin
@@ -191,7 +191,7 @@ gitorious.org was shut down in 2015).</p>
 <p>This qualifier allows to add the core SWHID identifier of the <em>snapshot</em> 
 of the repository where the object has been found or observed.</p>
 <p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code></a>
-indicates that the content seen previously with the function <code>generate_intput_stream</code> has
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
 been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
 its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>. </p>
 <p>This qualifier is only valid when the <code>origin</code> qualifier is also present.
@@ -204,7 +204,7 @@ the root directory is uniquely determined; when the anchor denotes a snapshot,
 the root directory is the first directory reachable from the <code>HEAD</code> branch,
 and undefined if such a reference is missing.</p>
 <p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml</code></a>
-indicates that the content seen previously with the function <code>generate_intput_stream</code> has
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
 been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
 its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>, and that it is named <code>simplefarm.ml</code> in the directory <code>Simplefarm</code> contained in the directory <code>Examples</code> contained in the root directory associated to the revision with core SWHID <code>swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0</code>.</p>
 <p>This qualifier is only valid when the object type is not content.
