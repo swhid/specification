@@ -155,9 +155,10 @@ or qualifier combinations and MUST ignore them if present,
 as detailed in the following sections.</p>
 <h2 id="61-fragment-qualifiers">6.1 Fragment qualifiers</h2>
 <p>There are two fragment qualifiers, <code>lines</code> and <code>bytes</code>.
-Fragment qualifiers are only valid for objects of type content.</p>
-<p>The two fragment qualifiers are mutually exclusive: a valid SWHID MUST not contain both.
-A conformant implementation MAY accept a SWHID that violates this constraint,
+Each fragment qualifier MUST appear at most once.</p>
+<p>Fragment qualifiers are only valid for objects of type content.</p>
+<p>Each valid SWHID must have at most one fragment qualifier.</p>
+<p>A conformant implementation MAY accept a SWHID that violates this constraint,
 by ignoring the <code>lines</code> qualifier when the <code>bytes</code> qualifier is present.</p>
 <h3 id="611-lines-qualifier">6.1.1 Lines qualifier</h3>
 <p>A "line" in the context of a file content refers to a sequence of characters that ends with a line break. This line can contain text, code, or any other form of data. In this specification, the line break is the ASCII LF character.
@@ -177,6 +178,8 @@ If the range is a single byte number, it designates the byte at that specific po
 designates the same function <code>generate_input_stream</code> as in the example above, but
 does not rely on any convention about line numbers.</p>
 <h2 id="62-context-qualifiers">6.2 Context qualifiers</h2>
+<p>There are four context qualifiers, <code>origin</code>, <code>visit</code>, <code>path</code> and <code>anchor</code>.
+Each context qualifier MUST appear at most once.</p>
 <h3 id="621-origin-qualifier">6.2.1 Origin qualifier</h3>
 <p>This qualifier allows to declare the <em>software origin</em> where the
 object has been found or observed, as an URI.</p>
