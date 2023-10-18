@@ -2,9 +2,9 @@
 
 ## A.1 Current and Previous Versions
 
-This edition has the version number 1.0 as part of its title.
-Although this is the first edition of the SWHID Specification as a Publicly Available Standard,
-earlier editions of the specification were published
+This edition has the version number 1.1 as part of its title.
+Version 1.0 was the first edition of the SWHID Specification as a Publicly Available Standard,
+and earlier editions of the specification were published
 by the Software Heritage.
 Differences between this edition and earlier ones
 are reported in the text; see also [[1]](B.Bibliography.md).
