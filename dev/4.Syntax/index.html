@@ -133,7 +133,7 @@ the following grammar:</p>
 &lt;dec_digit&gt; ::= &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot; ;
 &lt;hex_digit&gt; ::= &lt;dec_digit&gt; | &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot; ;
 
-&lt;qualifiers&gt; := &quot;;&quot; &lt;qualifier&gt; [ &lt;qualifiers&gt; ] ;
+&lt;qualifiers&gt; ::= &quot;;&quot; &lt;qualifier&gt; [ &lt;qualifiers&gt; ] ;
 &lt;qualifier&gt; ::=
     &lt;context_qualifier&gt;
   | &lt;fragment_qualifier&gt;
@@ -149,7 +149,7 @@ the following grammar:</p>
 &lt;anchor_ctxt&gt; ::= &quot;anchor&quot; &quot;=&quot; &lt;identifier_core&gt; ;
 &lt;path_ctxt&gt; ::= &quot;path&quot; &quot;=&quot; &lt;path_absolute_escaped&gt; ;
 &lt;fragment_qualifier&gt; ::= &quot;lines&quot; &quot;=&quot; &lt;range&gt; | &quot;bytes&quot; &quot;=&quot; &lt;range&gt; ;
-&lt;range&gt; = &lt;number&gt; [&quot;-&quot; &lt;number&gt;] ;
+&lt;range&gt; ::= &lt;number&gt; [&quot;-&quot; &lt;number&gt;] ;
 &lt;number&gt; ::= &lt;dec_digit&gt; + ;
 &lt;url_escaped&gt; ::= (* RFC 3987 IRI *)
 &lt;path_absolute_escaped&gt; ::= (* RFC 3987 absolute path *)
