@@ -141,7 +141,7 @@ identified:</p>
 </ul>
 <p>The fourth field is the <em>intrinsic identifier</em> of the object.
 This is a hex-encoded (using lowercase ASCII characters) hash value
-computed by the content and relevant metadata of the object.</p>
+computed from the content and relevant metadata of the object.</p>
 <h2 id="51-contents">5.1 Contents</h2>
 <p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
@@ -185,12 +185,12 @@ is no file <em>name</em> mentioned here).</p>
 <li>a NULL byte,</li>
 <li>and the previously obtained serialization.</li>
 </ul>
-<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> is the
+<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> 
 is the SWHID computed from
-<a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> as
+<a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> at
 a given point in time of its development on May 4th 2017.</p>
 <h2 id="53-revisions">5.3 Revisions</h2>
-<p>Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and record their changes.</p>
+<p>Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and records their changes.</p>
 <p>Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).</p>
 <p>The supported metadata is as follows:</p>
 <ul>
