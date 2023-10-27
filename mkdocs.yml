@@ -1,6 +1,6 @@
 site_name: specification v1.1
 repo_url: https://github.com/swhid/specification
-edit_uri: blob/master/Chapters/
+edit_uri: blob/main/Chapters/
 docs_dir: Chapters
 theme: readthedocs
 extra_css:
