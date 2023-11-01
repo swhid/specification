@@ -147,7 +147,7 @@ computed from the content and relevant metadata of the object.</p>
 <h2 id="51-contents">5.1 Contents</h2>
 <p>A <em>content</em> is an uninterpreted byte sequence, typically, the content of a file.
 For this type of object the intrinsic identifier is the <code>sha1_git</code> hash of it,
-i.e. the SHA1 of the byte sequence obtained by juxtaposing</p>
+that is, the SHA1 of the byte sequence obtained by juxtaposing:</p>
 <ul>
 <li>the ASCII string <code>"blob"</code> (4 bytes),</li>
 <li>an ASCII space,</li>
@@ -193,7 +193,7 @@ is the SWHID computed from
 a given point in time of its development on May 4th 2017.</p>
 <h2 id="53-revisions">5.3 Revisions</h2>
 <p>Software development within a specific project is essentially a time-indexed series of copies of a single “root” directory that contains the entire project source code. Software evolves when a developer modifies the content of one or more files in that directory and records their changes.</p>
-<p>Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (e.g., revision message), others are automatically synthesized (timestamps, parent revision(s), etc).</p>
+<p>Each recorded copy of the root directory is known as a “revision”. It points to a single fully-determined directory and is equipped with arbitrary metadata. Some of those are added manually by the developer (for example, a revision message), others are automatically synthesized (timestamps, parent revision(s), and so forth).</p>
 <p>The supported metadata is as follows:</p>
 <ul>
 <li>author (arbitrary byte sequence, mandatory): generally contains the name and email address of the author of the revision.</li>
@@ -258,8 +258,8 @@ a given point in time of its development on May 4th 2017.</p>
 <p>As an example, <code>swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d</code> is the SWHID computed from
 <a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
 <h2 id="54-releases">5.4 Releases</h2>
-<p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to the release and carries metadata: release name and version, release message, cryptographic signatures, etc. If they're not attached to development history (e.g. if they've been imported from bare tarballs), releases can also point directly to a root directory instead of a full revision with metadata.</p>
-<p>The supported metadata is as follows:
+<p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to that release and carries metadata: release name and version, release message, cryptographic signatures, and so forth. If they're not attached to development history (for instance, if they've been imported from bare archive files), releases can also point directly to a root directory instead of a full revision with metadata.</p>
+<p>The metadata fields supported by SWHID are as follows:
 - name (arbitrary byte sequence, mandatory): a name identifying the release
 - author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
 - author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
@@ -307,8 +307,8 @@ a given point in time of its development on May 4th 2017.</p>
 <p>As an example, <code>swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f</code> is the SWHID computed from
 the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f">Darktable release 2.3.0</a>, dated 24 December 2016.</p>
 <h2 id="55-snapshots">5.5 Snapshots</h2>
-<p>Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (e.g., master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (e.g., stable, development, etc.).</p>
-<p>A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a FOSS distribution.</p>
+<p>Any kind of software origin offers multiple pointers to the “current” state of a development project. In the case of VCS this is reflected by branches (for instance, master, development, but also so called feature branches dedicated to extending the software in a specific direction); in the case of package distributions by notions such as suites that correspond to different maturity levels of individual packages (for example, stable, development, and so forth).</p>
+<p>A “snapshot” of a given software origin records all entry points found there and where each of them was pointing at the time. For example, a snapshot object might track the commit where the master branch was pointing to at any given time, as well as the most recent release of a given package in the stable suite of a free and open source software (FOSS) distribution.</p>
 <p>Practically, a snapshot is a list of named branches pointing at objects of any of the known types (content, directory, revision, release or snapshot). A branch can also be an alias to another (named) branch, for instance the default <code>"HEAD"</code> branch can point at another, more specific, <code>"refs/heads/main"</code> branch.</p>
 <p>To compute the intrinsic identifier of a snapshot, one must first compute the intrinsic identifier of all objects referenced by the snapshot.</p>
 <p>Then one proceeds to create a serialization of the snapshot as follows:</p>
@@ -354,7 +354,7 @@ proceeds for
 <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">computing identifiers</a> for
 its objects. The <code>&lt;object_id&gt;</code> part of a SWHID for a content object is the Git
 blob identifier of any file with the same content; for a revision it is the Git
-commit identifier for the same revision, etc.  This is not the case for snapshot
+commit identifier for the same revision, and so forth.  This is not the case for snapshot
 identifiers, as Git does not have a corresponding object type.</p>
 <p>Git compatibility is practical, but incidental and is not guaranteed to be
 maintained in future versions of this standard, nor for different versions of

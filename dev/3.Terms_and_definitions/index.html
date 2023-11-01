@@ -79,6 +79,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#37-version-control-system">3.7 version control system</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#38-software-object-software-artifact">3.8 software object, software artifact</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#39-metadata">3.9 metadata</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#310-unix-epoch">3.10 UNIX epoch</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -127,7 +133,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="3-terms-and-definitions">3 Terms and definitions</h1>
+                <p>t</p>
+<h1 id="3-terms-and-definitions">3 Terms and definitions</h1>
 <p>For the purposes of this document,
 the following terms and definitions apply.</p>
 <p>ISO and IEC maintain terminological databases
@@ -143,11 +150,11 @@ for use in standardization at the following addresses:</p>
 <h2 id="32-git">3.2 git</h2>
 <p>Git is a distributed version control system created by Linus Torvalds in 2005. It allows teams of programmers to work on the same code base without overwriting each other's changes. Git is known for its speed, data integrity, and support for distributed, non-linear workflows. Each Git directory on every computer is a full-fledged repository with complete history and version tracking abilities, independent of network access or a central server.</p>
 <h2 id="33-hierarchical-file-system">3.3 hierarchical file system</h2>
-<p>A hierarchical file system is a method of organizing and managing files in a computer where data is stored hierarchically (in a structure often visualized as a tree). It uses directories (or 'folders') to organize files into a tree structure. Each directory can contain more files and directories, thus forming a hierarchical structure.</p>
+<p>A hierarchical file system is a method of organizing and managing files in a computer where data is stored hierarchically. It uses directories (or 'folders') to organize files into a tree structure. Each directory can contain more files and directories, thus forming a hierarchical structure.</p>
 <h2 id="34-intrinsic-identifier">3.4 intrinsic identifier</h2>
-<p>An identifier that can be computed directly from the object that it identifies, without needing a registry. Typical examples are cryptographically strong hashes.</p>
+<p>An identifier that can be computed directly from the object that it identifies, without needing access to a registry. Typical examples are cryptographically strong hashes.</p>
 <h2 id="35-repository">3.5 repository</h2>
-<p>In the context of version control systems, a repository is a storage location for software development artifacts including but not limited to source code, build scripts, documentation, etc. It often includes metadata about the stored items, such as version number, author, date of the last modification, etc. Repositories can be local or remote and are managed by version control systems like Git.</p>
+<p>In the context of version control systems, a repository is a storage location for software development artifacts including but not limited to source code, build scripts, and documentation. It often includes metadata about the stored items, such as version number, author, and date of the last modification. Repositories can be local or remote and are managed by version control systems like Git.</p>
 <h2 id="36-sha1">3.6 SHA1</h2>
 <p><em>SHA-1</em> (short for "Secure Hash Algorithm 1", also stylized as "<em>SHA1</em>") is a hash function that takes as input a sequence of bytes and produces a 160-bit (20-byte) hash value.
 The returned value is called <em>SHA1 checksum</em>, or simply <em>SHA1</em> when there is no risk of ambiguity between the function and the returned value.
@@ -159,7 +166,13 @@ For the purpose of this specification document, the SHA1 function is therefore c
 <p>When such a collision is detected during SHA1 computation, no SHA1 can be obtained for the object in question and hence, depending on the context, a valid SWHID might not exist for it.</p>
 <p>Note that in most cases SHA1 in this specification are computed on objects after adding specific headers to them, making "trivial" collision-prone files still perfectly valid and hence referenceable using SWHIDs.</p>
 <h2 id="37-version-control-system">3.7 version control system</h2>
-<p>A version control system (VCS), also known as source control or revision control, is a software tool that helps manage different versions of software development artifacts. It keeps track of all changes made to the code, allows multiple developers to work on the same codebase, and provides mechanisms for merging changes, reverting changes, and branching and merging of code. Examples include Git, Mercurial, and Subversion.</p>
+<p>A version control system (VCS), also known as source control or revision control, is a software tool that helps manage different versions of software development artifacts. It keeps track of all changes made to the code, allows multiple developers to work on the same codebase, and provides mechanisms for merging changes, reverting changes, and the branching and merging of code. Examples include Git, Mercurial, and Subversion.</p>
+<h2 id="38-software-object-software-artifact">3.8 software object, software artifact</h2>
+<p>A software object, also referred to as a software artifact, represents a distinct entity identifiable by a SWHID. This entity can be as granular as a single line of code within a source file or as expansive as an entire codebase comprising multiple source files. In addition to source files, a software object can also be a binary file resulting from code compilation or multiple binary files linked together to produce an executable file.</p>
+<h2 id="39-metadata">3.9 metadata</h2>
+<p>Within the context of this specification, metadata refers to supplementary information associated with a software object. It serves to provide a deeper understanding of the object by detailing attributes such as the programming language used, its functionality, or its dependencies. Metadata can also enumerate the individuals involved in the software's development, elucidate its licensing terms, offer a record of version history, and more. Essentially, metadata encapsulates the broader context, provenance, and attributes of the software object, ensuring a comprehensive understanding of its nature and purpose.</p>
+<h2 id="310-unix-epoch">3.10 UNIX epoch</h2>
+<p>The UNIX epoch is a time reference point that denotes the precise moment at 00:00:00 Coordinated Universal Time (UTC) on 1 January 1970. In UNIX-based systems, time is often represented as the total number of seconds that have transpired since this specific moment. This convention is widely used in computing for time-stamping and date-time representations.</p>
               
             </div>
           </div><footer>
