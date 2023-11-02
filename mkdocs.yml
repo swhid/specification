@@ -19,7 +19,7 @@ nav:
 - 'Clause 6: Qualified Identifiers': 6.Qualified_identifiers.md
 - 'Annex A: Conformance': A.Conformance.md
 - 'Annex B: Bibliography': B.Bibliography.md
-copyright: Copyright &copy; 2022 - SWHID Contributors.
+copyright: Copyright &copy; 2022–2023 SWHID Contributors.
 
 markdown_extensions:
 - codehilite:
