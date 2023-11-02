@@ -79,7 +79,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#37-version-control-system">3.7 version control system</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#38-software-object-software-artifact">3.8 software object, software artifact</a>
+    <li class="toctree-l2"><a class="reference internal" href="#38-software-artifact">3.8 software artifact</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#39-metadata">3.9 metadata</a>
     </li>
@@ -167,8 +167,8 @@ For the purpose of this specification document, the SHA1 function is therefore c
 <p>Note that in most cases SHA1 in this specification are computed on objects after adding specific headers to them, making "trivial" collision-prone files still perfectly valid and hence referenceable using SWHIDs.</p>
 <h2 id="37-version-control-system">3.7 version control system</h2>
 <p>A version control system (VCS), also known as source control or revision control, is a software tool that helps manage different versions of software development artifacts. It keeps track of all changes made to the code, allows multiple developers to work on the same codebase, and provides mechanisms for merging changes, reverting changes, and the branching and merging of code. Examples include Git, Mercurial, and Subversion.</p>
-<h2 id="38-software-object-software-artifact">3.8 software object, software artifact</h2>
-<p>A software object, also referred to as a software artifact, represents a distinct entity identifiable by a SWHID. This entity can be as granular as a single line of code within a source file or as expansive as an entire codebase comprising multiple source files. In addition to source files, a software object can also be a binary file resulting from code compilation or multiple binary files linked together to produce an executable file.</p>
+<h2 id="38-software-artifact">3.8 software artifact</h2>
+<p>A software artifact, also referred to as a digital artifact and a software object, represents a distinct entity identifiable by a SWHID. This entity can be as granular as a single line of code within a source file or as expansive as an entire codebase comprising multiple source files. In addition to source files, a software object can also be a binary file resulting from code compilation or multiple binary files linked together to produce an executable file.</p>
 <h2 id="39-metadata">3.9 metadata</h2>
 <p>Within the context of this specification, metadata refers to supplementary information associated with a software object. It serves to provide a deeper understanding of the object by detailing attributes such as the programming language used, its functionality, or its dependencies. Metadata can also enumerate the individuals involved in the software's development, elucidate its licensing terms, offer a record of version history, and more. Essentially, metadata encapsulates the broader context, provenance, and attributes of the software object, ensuring a comprehensive understanding of its nature and purpose.</p>
 <h2 id="310-unix-epoch">3.10 UNIX epoch</h2>
@@ -185,7 +185,7 @@ For the purpose of this specification document, the SHA1 function is therefore c
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>Copyright &copy; 2022 - SWHID Contributors.</p>
+      <p>Copyright &copy; 2022–2023 SWHID Contributors.</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

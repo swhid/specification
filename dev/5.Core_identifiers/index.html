@@ -187,7 +187,7 @@ is no file <em>name</em> mentioned here).</p>
 <li>a NULL byte,</li>
 <li>and the previously obtained serialization.</li>
 </ul>
-<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code> 
+<p>As an example, <code>swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505</code>
 is the SWHID computed from
 <a href="https://archive.softwareheritage.org/swh:1:dir:d198bc9d7a6bcf6db04f476d29314f157507d505">a directory containing the source code of the darktable photography application</a> at
 a given point in time of its development on May 4th 2017.</p>
@@ -259,13 +259,15 @@ a given point in time of its development on May 4th 2017.</p>
 <a href="https://archive.softwareheritage.org/swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d">a commit in the development history of Darktable</a>, dated 16 January 2017, that added undo/redo supports for masks.</p>
 <h2 id="54-releases">5.4 Releases</h2>
 <p>Some revisions get selected by developers as denoting important project milestones known as “releases”. Each release points to the last commit in project history corresponding to that release and carries metadata: release name and version, release message, cryptographic signatures, and so forth. If they're not attached to development history (for instance, if they've been imported from bare archive files), releases can also point directly to a root directory instead of a full revision with metadata.</p>
-<p>The metadata fields supported by SWHID are as follows:
-- name (arbitrary byte sequence, mandatory): a name identifying the release
-- author (arbitrary byte sequence): generally contains the name and email address of the author of the release.
-- author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.
-- author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.
-- target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release
-- message: the message describing the release</p>
+<p>The metadata fields supported by SWHID are as follows:</p>
+<ul>
+<li>name (arbitrary byte sequence, mandatory): a name identifying the release</li>
+<li>author (arbitrary byte sequence): generally contains the name and email address of the author of the release.</li>
+<li>author timestamp (decimal timestamp from the Unix epoch): the date at which the release was authored.</li>
+<li>author timezone offset (arbitrary byte sequence): UTC offset at which the release was authored, usually an ASCII-encoded [+/-]HHMM specification.</li>
+<li>target object (mandatory): a reference to another object, which can be either a revision, a directory or less commonly a content or another release</li>
+<li>message: the message describing the release</li>
+</ul>
 <p>In order to compute the intrinsic identifier of a release, it is necessary to first compute the intrinsic identifier of the targeted object.</p>
 <p>The serialization of the release is a sequence of lines in the following order:</p>
 <ul>
@@ -349,8 +351,8 @@ the <a href="https://archive.softwareheritage.org/swh:1:rel:22ece559cc7cc2364edc
 <a href="https://archive.softwareheritage.org/swh:1:snp:c7c108084bc0bf3d81436bf980b46e98bd338453">a snapshot of the entire Darktable Git repository</a> as it was on 4 May 2017 on GitHub.</p>
 <h2 id="note-on-compatibility-with-git">Note on compatibility with Git</h2>
 <p>SWHIDs for contents, directories, revisions, and releases are, at present,
-compatible with the way the current version of <a href="https://git-scm.com/">Git</a> 
-proceeds for 
+compatible with the way the current version of <a href="https://git-scm.com/">Git</a>
+proceeds for
 <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">computing identifiers</a> for
 its objects. The <code>&lt;object_id&gt;</code> part of a SWHID for a content object is the Git
 blob identifier of any file with the same content; for a revision it is the Git
@@ -371,7 +373,7 @@ Git.</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>Copyright &copy; 2022 - SWHID Contributors.</p>
+      <p>Copyright &copy; 2022–2023 SWHID Contributors.</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
