@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Clause 6: Qualified Identifiers - specification v1.1</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Clause 6: Qualified Identifiers";
+        var mkdocs_page_input_path = "6.Qualified_identifiers.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> specification v1.1
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Copyright</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../0.Foreword/">Foreword</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../0.Introduction/">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1.Scope/">Clause 1: Scope</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2.Normative_references/">Clause 2: Normative references</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3.Terms_and_definitions/">Clause 3: Terms and definitions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4.Syntax/">Clause 4: Syntax</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5.Core_identifiers/">Clause 5: Core Identifiers</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Clause 6: Qualified Identifiers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#qualifiers">Qualifiers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#61-fragment-qualifiers">6.1 Fragment qualifiers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#611-lines-qualifier">6.1.1 Lines qualifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#612-bytes-qualifier">6.1.2 Bytes qualifier</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#62-context-qualifiers">6.2 Context qualifiers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#621-origin-qualifier">6.2.1 Origin qualifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#622-visit-qualifier">6.2.2 Visit qualifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#623-path-qualifier">6.2.3 Path qualifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#624-anchor-qualifier">6.2.4 Anchor qualifier</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63-comparing-qualified-swhids">6.3 Comparing qualified SWHIDs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#64-recommendations">6.4 Recommendations</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../A.Conformance/">Annex A: Conformance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../B.Bibliography/">Annex B: Bibliography</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">specification v1.1</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Clause 6: Qualified Identifiers</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/swhid/specification/blob/main/Chapters/6.Qualified_identifiers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="6-qualified-identifiers">6 Qualified identifiers</h1>
+<h3 id="qualifiers">Qualifiers</h3>
+<p>A qualified, or full, SWHID is composed of a core SWHID identifier, and a
+sequence of qualifiers.</p>
+<p>Qualifiers may be:</p>
+<ul>
+<li><em>fragment qualifiers</em> (see 6.1), that identify subparts of a software artifact; or</li>
+<li><em>context qualifiers</em> (see 6.2), that provide additional context on the software artifact.</li>
+</ul>
+<p>Each qualifier is specified as a key-value pair, using an <code>=</code> character as a separator.
+Qualifiers are separated from the core identifier and from each other by using a <code>;</code> character.</p>
+<p>Some qualifiers are valid for specific object types,
+and the validity of some qualifiers depends on the presence of other qualifiers.
+Conformant implementation MUST not generate invalid qualifiers
+or qualifier combinations and MUST ignore them if present,
+as detailed in the following sections.</p>
+<h2 id="61-fragment-qualifiers">6.1 Fragment qualifiers</h2>
+<p>There are two fragment qualifiers, <code>lines</code> and <code>bytes</code>.
+Each fragment qualifier MUST appear at most once.</p>
+<p>Fragment qualifiers are only valid for objects of type content.</p>
+<p>Each valid SWHID must have at most one fragment qualifier.</p>
+<p>A conformant implementation MAY accept a SWHID that violates this constraint,
+by ignoring the <code>lines</code> qualifier when the <code>bytes</code> qualifier is present.</p>
+<h3 id="611-lines-qualifier">6.1.1 Lines qualifier</h3>
+<p>A "line" in the context of a file content refers to a sequence of characters that ends with a line break. This line can contain text, code, or any other form of data. In this specification, the line break is the ASCII LF character.
+The "lines" qualifier allows to designate a line range inside a content.
+The range can be a single line number, or a pair of line numbers separated by the ASCII <code>-</code> character.
+Line numbers start from 1, and the range is inclusive, that is, the fragment includes both the lines numbered as the start and end of the range.</p>
+<p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;lines=9-15</code></a>
+designates the function <code>generate_input_stream</code> that is found at lines 9 to 15 of the <em>content</em> with core SWHID <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b</code>.</p>
+<p>Notice that the notion of "line number" is not always meaningful: the content
+may be a binary file, or a file that uses non standard line termination character(s).</p>
+<h3 id="612-bytes-qualifier">6.1.2 Bytes qualifier</h3>
+<p>To overcome the limitations of the lines qualifier, the bytes qualifier allows
+designation of a byte range inside a content.  The range can be a single byte number, or a pair of byte numbers separated by <code>-</code>.
+Byte numbers start from 0, and the range is inclusive, that is, the fragment includes both the bytes numbered as the start and end of the range.
+If the range is a single byte number, it designates the byte at that specific position.</p>
+<p>For example, <code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;bytes=154-315</code>
+designates the same function <code>generate_input_stream</code> as in the example above, but
+does not rely on any convention about line numbers.</p>
+<h2 id="62-context-qualifiers">6.2 Context qualifiers</h2>
+<p>There are four context qualifiers, <code>origin</code>, <code>visit</code>, <code>path</code> and <code>anchor</code>.
+Each context qualifier MUST appear at most once.</p>
+<h3 id="621-origin-qualifier">6.2.1 Origin qualifier</h3>
+<p>This qualifier allows declaration of the <em>software origin</em> where the
+object has been found or observed, as an URI.</p>
+<p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code></a>
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
+been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code></p>
+<p>This qualifier may help to get hold of the full repository where a
+content has been found, but there is no guarantee of success, as an origin
+can change or disappear over time (as is the case in the example above, since
+gitorious.org was shut down in 2015).</p>
+<h3 id="622-visit-qualifier">6.2.2 Visit qualifier</h3>
+<p>This qualifier allows addition of the core SWHID identifier of the <em>snapshot</em>
+of the repository where the object has been found or observed.</p>
+<p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code></a>
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
+been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
+its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>.</p>
+<p>This qualifier is only valid when the <code>origin</code> qualifier is also present.
+Otherwise, it MUST be ignored.</p>
+<h3 id="623-path-qualifier">6.2.3 Path qualifier</h3>
+<p>This qualifier allows declaration of the <em>absolute file path</em>, from the <em>root
+directory</em> associated to the <em>anchor node</em>, to the object designated by the core
+SWHID identifier; when the anchor denotes a directory, a revision or a release,
+the root directory is uniquely determined; when the anchor denotes a snapshot,
+the root directory is the first directory reachable from the <code>HEAD</code> branch,
+and undefined if such a reference is missing.</p>
+<p>For example, <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml</code></a>
+indicates that the content seen previously with the function <code>generate_input_stream</code> has
+been seen in the Git repository at <code>https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git</code>, when
+its full state had the SWHID core identifier <code>swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9</code>, and that it is named <code>simplefarm.ml</code> in the directory <code>Simplefarm</code> contained in the directory <code>Examples</code> contained in the root directory associated to the revision with core SWHID <code>swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0</code>.</p>
+<p>This qualifier is only valid when the object type is not content.
+Otherwise, it MUST be ignored.</p>
+<h3 id="624-anchor-qualifier">6.2.4 Anchor qualifier</h3>
+<p>This qualifier is used in conjunction with the <code>path</code> qualifier.
+It allows identification of a node in the Merkle DAG relative to which
+a <em>path to the object</em> is specified, as the core identifier of a directory,
+a revision, a release or a snapshot. See the example provided for the
+<code>path</code> qualifier.</p>
+<p>This qualifier is only valid when the <code>path</code> qualifier is also present.
+Otherwise, it MUST be ignored.</p>
+<h3 id="63-comparing-qualified-swhids">6.3 Comparing qualified SWHIDs</h3>
+<p>One can determine whether two software artifacts are identical (bit by bit) by
+comparing their core SWHIDs, ignoring all qualifiers. If the core SWHIDs are equal,
+the software artifacts they represent are identical.</p>
+<p>To determine if two SWHIDs represent the same software artifact (or fragment
+thereof) in the same context, one must also compare their qualifiers. Two SWHIDs
+are considered equivalent in context if:</p>
+<ul>
+<li>They both have the same set of qualifiers.</li>
+<li>The values of these qualifiers are identical. For instance, if both SWHIDs
+  have an <code>anchor</code> qualifier, the core SWHID values of these qualifiers are
+  identical. Similarly, if both have a <code>lines</code> qualifier, their values are identical.</li>
+</ul>
+<p>Note that the order of the qualifiers does not matter for comparison purposes.</p>
+<h3 id="64-recommendations">6.4 Recommendations</h3>
+<p>We recommend equipping identifiers meant for sharing with as many
+qualifiers as possible. While qualifiers may be listed in any order, it
+is good practice to present them in the following canonical order:
+<code>origin</code>, <code>visit</code>, <code>anchor</code>, <code>path</code>, <code>lines</code> or <code>bytes</code>.</p>
+<p>By adhering to this order, it becomes easier to visually inspect and compare
+SWHIDs, especially when dealing with a large number of identifiers.</p>
+<p>Here is an example: <a href="https://archive.softwareheritage.org/swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15"><code>swh:1:cnt:4d99d2d18326621ccdd70f5ea66c2e2ac236ad8b;origin=https://gitorious.org/ocamlp3l/ocamlp3l_cvs.git;visit=swh:1:snp:d7f1b9eb7ccb596c2622c4780febaa02549830f9;anchor=swh:1:rev:2db189928c94d62a3b4757b3eec68f0a4d4113f0;path=/Examples/SimpleFarm/simplefarm.ml;lines=9-15</code></a></p>
+<p>Redundant information should be omitted: for example, if the <em>visit</em> is present,
+and the <em>path</em> is relative to the snapshot indicated there, then the <em>anchor</em>
+qualifier is superfluous; similarly, if the <em>path</em> is empty, it may be omitted.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../5.Core_identifiers/" class="btn btn-neutral float-left" title="Clause 5: Core Identifiers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../A.Conformance/" class="btn btn-neutral float-right" title="Annex A: Conformance">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022–2023 SWHID Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/swhid/specification" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../5.Core_identifiers/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../A.Conformance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+      <script src="../js/version-select.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
