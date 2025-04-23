@@ -1,4 +1,4 @@
-site_name: specification v1.1
+site_name: specification v1.2
 repo_url: https://github.com/swhid/specification
 edit_uri: blob/main/Chapters/
 docs_dir: Chapters
@@ -19,7 +19,7 @@ nav:
 - 'Clause 6: Qualified Identifiers': 6.Qualified_identifiers.md
 - 'Annex A: Conformance': A.Conformance.md
 - 'Annex B: Bibliography': B.Bibliography.md
-copyright: Copyright &copy; 2022–2023 SWHID Contributors.
+copyright: Copyright &copy; 2022–2025 SWHID Contributors.
 
 markdown_extensions:
 - codehilite:
