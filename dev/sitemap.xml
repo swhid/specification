@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/0.Foreword/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/0.Introduction/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/1.Scope/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/2.Normative_references/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/3.Terms_and_definitions/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/4.Syntax/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/5.Core_identifiers/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/6.Qualified_identifiers/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/A.Conformance/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2025-04-23</lastmod>
+         <loc>https://swhid.org/specification/dev/B.Bibliography/</loc>
+         <lastmod>2025-09-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
