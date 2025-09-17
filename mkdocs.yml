@@ -1,10 +1,19 @@
-site_name: specification v1.2
+site_name: SWHID Specification
+site_url: https://swhid.org/specification/
 repo_url: https://github.com/swhid/specification
 edit_uri: blob/main/Chapters/
 docs_dir: Chapters
-theme: readthedocs
+
+theme:
+  name: readthedocs
+  custom_dir: docs/overrides
+
 extra_css:
-- css/style.css
+  - css/style.css
+  - css/swh-mkdocs-theme.css
+  - design/css/tokens.css
+  - design/css/swhid-brand.css
+  - design/css/unified-navbar.css
 use_directory_urls: true
 nav:
 
