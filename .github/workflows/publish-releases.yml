@@ -5,6 +5,9 @@ on:
     branches:
     - 'v*.*'
 
+permissions:
+  contents: write
+
 jobs:
   build_current:
     name: Build current
@@ -13,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: 'main'
+        ref: ${{ github.ref_name }}
     - name: Install pre-requisites
       run: pip install -r requirements.txt
     - name: Install mike
