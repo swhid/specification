@@ -1,0 +1,6 @@
+INHERIT: ./mkdocs.yml
+
+theme:
+  name: mkdocs
+plugins:
+- to-pdf
